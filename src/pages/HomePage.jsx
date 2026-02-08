@@ -17,7 +17,7 @@ const HomePage = () => {
           </p>
         </div>
       <img
-  src="public\learningImage.png"
+  src="learningImage.png"
   alt="Smart Learning"
   className="rounded-xl mt-8 w-full md:w-1/3 h-auto max-h-80 shadow-lg object-contain"
 />
