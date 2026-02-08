@@ -49,7 +49,7 @@ const HomePage = () => {
       </section>
 
       {/* Example Use Case */}
-      <section className="px-6 md:px-12 py-16 bg-gray-100">
+      <section className="px-6 md:px-12 py-16 bg-gray-100 ">
         <h3 className="text-2xl md:text-3xl font-bold text-center mb-10 text-blue-800">How It Works?</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           <div className="p-6 bg-white rounded-xl shadow hover:shadow-lg">
