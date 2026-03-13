@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-// import { alertNotification, errorNotification, successNotification } from "../utils/toast";
-// import { loginUser } from "../utils/repository/user";
-// import { loginVendor } from "../utils/repository/vendor";
-// import { useAtom } from "jotai";
-// import { userAtom } from "../store/user";
-// import { authUserAtom } from "../store/other";
+import { alertNotification, errorNotification, successNotification } from "../utils/toast";
+import { authUserAtom } from "../store/other";
 import { CircularProgress } from "@mui/material";
-// import { address } from "framer-motion/client";
-// import { loginVenue } from "../utils/repository/venue";
+import { loginUser } from "../utils/repository/user";
+import { useAtom } from "jotai";
+
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -17,190 +14,72 @@ const LoginPage = () => {
   const [loginType, setLoginType] = useState("user"); // user | admin
   const [showPassword, setShowPassword] = useState(false);
   const [passwordForUser, setPasswordForUser] = useState("");
-  const [passwordForVendor, setPasswordForVendor] = useState("");
   const [emailForUser, setEmailForUser] = useState("");
-  const [emailForVendor, setEmailForVendor] = useState("");
-  const [emailForVenue, setEmailForVenue] = useState("");
-  const [passwordForVenue, setPasswordForVenue] = useState("");
-  //   const[user, setUser] = useAtom(userAtom)
-  //   const[authUser, setAuthUser] = useAtom(authUserAtom)
 
-  //   const handleLoginUser = async(e) => {
-  //     setLoadingForButton(true);
-  //     e.preventDefault();
 
-  //     if(emailForUser?.trim() == ""){
-  //       alertNotification({message:'Please enter email'})
-  //       setLoadingForButton(false)
-  //       return;
-  //     }
-  //     if(passwordForUser?.trim() == ""){
-  //       alertNotification({message: 'please enter password'})
-  //       setLoadingForButton(false)
-  //       return;
-  //     }
+    const[authUser, setAuthUser] = useAtom(authUserAtom)
 
-  //     const response = await loginUser({
-  //       email:emailForUser.trim() || "",
-  //       password: passwordForUser.trim() || ""
-  //     })
-  //     if(response == false){
-  //       setLoadingForButton(false)
-  //       return;
-  //     }
 
-  //     if(response.status == 200){
-  //       if(response?.data?.role && response?.data?.token){
-  //         setAuthUser({
-  //           ...user,
-  //           role:response?.data?.role || "",
-  //           token: response?.data?.token || '',
-  //           userDetails:{
-  //             name: response?.data?.name || '',
-  //             id: response?.data?.id || '',
-  //           }
-  //         })
-  //       }
-  //       if(!response?.data?.name){
-  //         successNotification({
-  //           message: response?.message,
-  //           duration:800,
-  //         });
-  //         alertNotification({
-  //           message:'Please complete your profile!',
-  //           duration:1500,
-  //         });
-  //         setLoadingForButton(false)
-  //         navigate('/profile')
-  //         return;
-  //       }
-  //       setEmailForUser("");
-  //       setPasswordForUser('');
-  //       successNotification({message:response?.message});
-  //       setLoadingForButton(false)
-  //       navigate('/')
-  //     }else{
-  //       errorNotification({message:response?.message})
-  //       setLoadingForButton(false)
-  //     }
-  //   }
+    const handleLoginUser = async(e) => {
+      setLoadingForButton(true);
+      e.preventDefault();
 
-  //   const handleLoginVendor = async(e) => {
-  //     setLoadingForButton(true);
-  //     e.preventDefault();
+      if(emailForUser?.trim() == ""){
+        alertNotification({message:'Please enter email'})
+        setLoadingForButton(false)
+        return;
+      }
+      if(passwordForUser?.trim() == ""){
+        alertNotification({message: 'please enter password'})
+        setLoadingForButton(false)
+        return;
+      }
 
-  //     if(emailForVendor?.trim() == ""){
-  //       alertNotification({message:'Please enter email'})
-  //       setLoadingForButton(false)
-  //       return;
-  //     }
-  //     if(passwordForVendor?.trim() == ""){
-  //       alertNotification({message: 'please enter password'})
-  //       setLoadingForButton(false)
-  //       return;
-  //     }
-  //     const response = await loginVendor({
-  //       email:emailForVendor.trim() || "",
-  //       password: passwordForVendor.trim() || ""
-  //     })
-  //     if(response == false){
-  //       setLoadingForButton(false)
-  //       return;
-  //     }
-  //     if(response.status == 200){
-  //       if(response?.data?.role && response?.data?.token){
-  //       setAuthUser({
-  //         ...user,
-  //         role:response?.data?.role || "",
-  //         token: response?.data?.token || "",
-  //         userDetails:{
-  //           name:response?.data?.name || '',
-  //           id: response?.data?.id || ''
-  //         }
-  //       })
-  //       }
-  //       if(!response?.data?.name){
-  //         successNotification({
-  //           message: response?.message,
-  //           duration:800,
-  //         });
-  //         alertNotification({
-  //           message:'Please complete your profile!',
-  //           duration:1500,
-  //         });
-  //         setLoadingForButton(false)
-  //         navigate('/profile')
-  //         return;
-  //       }
-  //       setEmailForVendor('');
-  //       setPasswordForVendor('');
-  //       successNotification({message:response?.message});
-  //       setLoadingForButton(false)
-  //       navigate("/")
-  //     }else{
-  //       errorNotification({message:response?.message})
-  //       setLoadingForButton(false)
-  //     }
-  //   }
-  //   const handleLoginVenue = async(e) => {
-  //     setLoadingForButton(true);
-  //     e.preventDefault();
+      const response = await loginUser({
+        email:emailForUser.trim() || "",
+        password: passwordForUser.trim() || ""
+      })
+      if(response == false){
+        setLoadingForButton(false)
+        return;
+      }
+     
+      if(response.status == 200){
+        if(response?.data?.role && response?.data?.token){
+          setAuthUser({
+            role:response?.data?.role || "",
+            token: response?.data?.token || '',
+            userDetails:{
+              name: response?.data?.name || '',
+              id: response?.data?.id || '',
+            }
+          })
+        }
+        // if(!response?.data?.name){
+        //   successNotification({
+        //     message: response?.message,
+        //     duration:800,
+        //   });
+        //   alertNotification({
+        //     message:'Please complete your profile!',
+        //     duration:1500,
+        //   });
+        //   setLoadingForButton(false)
+        //   navigate('/profile')
+        //   return;
+        // }
+        setEmailForUser("");
+        setPasswordForUser('');
+        successNotification({message:response?.message});
+        setLoadingForButton(false)
+        navigate('/')
+      }else{
+        errorNotification({message:response?.message})
+        setLoadingForButton(false)
+      }
+    }
 
-  //     if(emailForVenue?.trim() == ""){
-  //       alertNotification({message:'Please enter email'})
-  //       setLoadingForButton(false)
-  //       return;
-  //     }
-  //     if(passwordForVenue?.trim() == ""){
-  //       alertNotification({message: 'please enter password'})
-  //       setLoadingForButton(false)
-  //       return;
-  //     }
-  //     const response = await loginVenue({
-  //       email:emailForVenue.trim() || "",
-  //       password: passwordForVenue.trim() || ""
-  //     })
-  //     if(response == false){
-  //       setLoadingForButton(false)
-  //       return;
-  //     }
-  //     if(response.status == 200){
-  //       if(response?.data?.role && response?.data?.token){
-  //       setAuthUser({
-  //         ...user,
-  //         role:response?.data?.role || "",
-  //         token: response?.data?.token || "",
-  //         userDetails:{
-  //           name:response?.data?.name || '',
-  //           id: response?.data?.id || '',
-  //         }
-  //       })
-  //       }
 
-  //        if(!response?.data?.name){
-  //         successNotification({
-  //           message: response?.message,
-  //           duration:800,
-  //         });
-  //         alertNotification({
-  //           message:'Please complete your profile!',
-  //           duration:1500,
-  //         });
-  //         setLoadingForButton(false)
-  //         navigate('/profile')
-  //         return;
-  //       }
-  //       setEmailForVenue("");
-  //       setPasswordForVenue("");
-  //       successNotification({message:response?.message});
-  //       setLoadingForButton(false)
-  //       navigate("/")
-  //     }else{
-  //       errorNotification({message:response?.message})
-  //       setLoadingForButton(false)
-  //     }
-
-  //   }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100  px-4">
       <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
@@ -236,12 +115,9 @@ const LoginPage = () => {
         </h2>
 
         {/* Form */}
-
-        {loginType == "user" ? (
-          // for user
           <form
             className="space-y-5"
-            //    onSubmit={handleLoginUser}
+               onSubmit={handleLoginUser}
           >
             <div>
               <label className="block text-gray-700 font-medium mb-1">
@@ -291,60 +167,6 @@ const LoginPage = () => {
               )}
             </button>
           </form>
-        ) : (
-          // for admin
-          <form
-            className="space-y-5"
-            //    onSubmit={handleLoginVendor}
-          >
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                value={emailForVendor}
-                onChange={(e) => {
-                  setEmailForVendor(e.target.value);
-                }}
-                placeholder="Enter your email"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
-              />
-            </div>
-
-            <div className="relative">
-              <label className="block text-gray-700 font-medium mb-1">
-                Password
-              </label>
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                value={passwordForVendor}
-                onChange={(e) => setPasswordForVendor(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
-              />
-              <button
-                type="button"
-                className="absolute right-3 top-10 text-gray-500"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
-            </div>
-
-            <button
-              type="submit"
-              className={`w-full bg-teal-500 text-white py-2 rounded-lg font-semibold hover:bg-teal-600 transition ${loadingForButton ? "pointer-events-none" : "pointer-events-auto"}`}
-            >
-              {loadingForButton ? (
-                <CircularProgress size={20} color="white" />
-              ) : (
-                "Login"
-              )}
-            </button>
-          </form>
-        )}
-
         {/* Footer */}
         <p className="text-sm text-gray-600 mt-6 text-center">
           Don’t have an account?{" "}

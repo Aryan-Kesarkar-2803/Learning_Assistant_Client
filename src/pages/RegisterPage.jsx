@@ -1,19 +1,15 @@
 import React, { use, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, redirect, useNavigate } from "react-router-dom";
+import { alertNotification, errorNotification, successNotification } from "../utils/toast";
+import { registerUser } from "../utils/repository/user";
 
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-  const [registerType, setRegisterType] = useState("user"); // user | vendor | venue
   const [showPassword, setShowPassword] = useState(false);
-  const [otpSent, setOtpSent] = useState(false);
   const [passwordForUser, setPasswordForUser] = useState("")
-  const [passwordForVendor, setPasswordForVendor] = useState("")
-  const [passwordForVenue, setPasswordForVenue] = useState("")
   const [emailForUser, setEmailForUser] = useState("");
-  const [emailForVendor, setEmailForVendor] = useState("");
-  const [emailForVenue, setEmailForVenue] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Email validation
@@ -29,125 +25,43 @@ const RegisterPage = () => {
     return passwordRegex.test(pass);
   };
 
-//   const handleRegisterUser = async(e) => {
-//     e.preventDefault();
+  const handleRegisterUser = async(e) => {
+    e.preventDefault();
 
-//     if (!isValidEmail(emailForUser)) {
-//       alertNotification({message:'Please enter a valid email'})
-//       return;
-//     }
+    if (!isValidEmail(emailForUser)) {
+      alertNotification({message:'Please enter a valid email'})
+      return;
+    }
 
-//     if(!isStrongPassword(passwordForUser)){
-//       alertNotification({message:'Please enter strong password'});
-//       return;
-//     }
-//     setLoading(true);
+    if(!isStrongPassword(passwordForUser)){
+      alertNotification({message:'Please enter strong password'});
+      return;
+    }
+    setLoading(true);
 
-//     const response = await registerUser({
-//       email: emailForUser.trim(),
-//       password: passwordForUser.trim()
-//     })
-//     if(response == false){
-//       setLoading(false)
-//       return;
-//     }
-//     if(response.status == 201){
-//        successNotification({message:response?.message});
-//        setEmailForUser('');
-//        setPasswordForUser('');
-//        navigate("/login")
-//     }else{
-//       errorNotification({message:response?.message})
-//     }
-//     setLoading(false)
-//   };
-
-//   const handleRegisterVendor = async(e) => {
-//     e.preventDefault();
-
-//     if (!isValidEmail(emailForVendor)) {
-//       alertNotification({message:'Please enter a valid email'})
-//       return;
-//     }
-
-//      if(!isStrongPassword(passwordForVendor)){
-//       alertNotification({message:'Please enter strong password'});
-//       return;
-//     }
-//     setLoading(true);
-//     const response = await registerVendor({
-//       email: emailForVendor.trim(),
-//       password: passwordForVendor.trim()
-//     })
-
-//     if(response == false){
-//       setLoading(false)
-//       return;
-//     }
-
-//     if(response.status == 201){
-//        setEmailForVendor('');
-//        setPasswordForVendor('')
-//        successNotification({message:response?.message});
-//        navigate("/login")
-//     }else{
-//       errorNotification({message:response?.message})
-//     }
-//     setLoading(false)
-//   }
-//   const handleRegisterVenue = async(e) => {
-    
-//     e.preventDefault();
-
-//     if (!isValidEmail(emailForVenue)) {
-//       alertNotification({message:'Please enter a valid email'})
-//       return;
-//     }
-
-//      if(!isStrongPassword(passwordForVenue)){
-//       alertNotification({message:'Please enter strong password'});
-//       return;
-//     }
-//     setLoading(true);
-//     const response = await registerVenue({
-//       email: emailForVenue.trim(),
-//       password: passwordForVenue.trim()
-//     })
-
-//     if(response == false){
-//       setLoading(false)
-//       return;
-//     }
-
-//     if(response.status == 201){
-//        setEmailForVenue('');
-//        setPasswordForVenue('');
-//        successNotification({message:response?.message});
-//        navigate("/login")
-//     }else{
-//       errorNotification({message:response?.message})
-//     }
-//     setLoading(false)
-//   }
+    const response = await registerUser({
+      email: emailForUser.trim(),
+      password: passwordForUser.trim()
+    })
+    if(response == false){
+      setLoading(false)
+      return;
+    }
+    if(response.status == 201){
+       successNotification({message:response?.message});
+       setEmailForUser('');
+       setPasswordForUser('');
+       navigate("/login")
+    }else{
+      errorNotification({message:response?.message})
+    }
+    setLoading(false)
+  };
 
   const handleChangeEmailForUser = (e) =>{
         setEmailForUser(e.target.value)
   }
-  const handleChangeEmailForVenue = (e) =>{
-        setEmailForVenue(e.target.value)
-  }
-  const handlePasswordChangeForUser = (e) =>{
-        setPasswordForUser(e.target.value)
-  }
-  const handlePasswordChangeForVenue = (e) =>{
-        setPasswordForVenue(e.target.value)
-  }
-  const handleChangeEmailForVendor = (e)=>{
-        setEmailForVendor(e.target.value)
-  }
-  const handlePasswordChangeForVendor =(e) =>{
-        setPasswordForVendor(e.target.value);
-  }
+  
 
   return (
     <>
@@ -169,7 +83,7 @@ const RegisterPage = () => {
         
         {/* User Register */}
         <form className="space-y-5" 
-        // onSubmit={handleRegisterUser}
+        onSubmit={handleRegisterUser}
         >
           {/* Email with OTP */}
           <div>
