@@ -3,16 +3,24 @@ import React, { useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { ClickAwayListener } from "@mui/material";
+import { FaUserCircle } from "react-icons/fa";
+import { authUserAtom } from "../store/other";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
   const [openDialogForLogout, setOpenDialogForLogout] = useState(false);
+  const [authUser, setAuthUser] = useAtom(authUserAtom);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const logout = () => {};
+  const logout = () => {
+    setAuthUser({});
+    navigate("/");
+    setOpenDialogForLogout(false);
+  };
 
   const toggleProfileMenu = () => {
     setOpenProfileMenu((prev) => !prev);
@@ -72,9 +80,83 @@ const Header = () => {
         Services
       </NavLink>
     </nav> */}
-        {location.pathname != "/login" && location.pathname != "/register" && (
+        {/* {location.pathname != "/login" && location.pathname != "/register" && (
           <button
             className="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium "
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Login
+          </button>
+        )} */}
+
+        {authUser?.token && authUser?.token != "" > 0 ? (
+          <ClickAwayListener onClickAway={() => setOpenProfileMenu(false)}>
+            <div className="relative  text-left  md:block">
+              {/* <FaUserCircle/> */}
+
+              <div className="flex align-middle gap-3">
+                <p className="hidden sm:block text-xl font-bold text-black select-none ">
+                  Welcome{" "}
+                  {authUser?.userDetails?.name &&
+                  authUser?.userDetails?.name?.length > 0
+                    ? (authUser?.userDetails?.name || "").split(" ")[0]
+                    : authUser?.role || ""}
+                </p>
+
+                <FaUserCircle
+                  className="size-6 md:size-7 cursor-pointer"
+                  onClick={toggleProfileMenu}
+                />
+              </div>
+
+              {/* Dropdown */}
+
+              <div
+                className={`absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-xl z-50 ${openProfileMenu ? "block" : "hidden"}`}
+              >
+                <ul className="py-2 text-gray-700 text-center">
+                  <li
+                    className={` md:hidden block px-4 py-2  cursor-none text-black font-bold select-none`}
+                  >
+                    Welcome{" "}
+                    {authUser?.userDetails?.name !== ""
+                      ? (authUser?.userDetails?.name || "").split(" ")[0]
+                      : authUser?.role || ""}
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer select-none"
+                    onClick={() => {
+                      navigateTo("/profile");
+                    }}
+                  >
+                    Profile
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer select-none"
+                    onClick={() => {
+                      navigateTo("settings");
+                    }}
+                  >
+                    Settings
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-red-100 text-red-600 cursor-pointer select-none"
+                    onClick={() => {
+                      setOpenDialogForLogout(true);
+                      toggleProfileMenu();
+                    }}
+                  >
+                    Logout
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </ClickAwayListener>
+        ) : (
+          <button
+            className="bg-yellow-400 text-indigo-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-300"
             onClick={() => {
               navigate("/login");
             }}
@@ -84,8 +166,8 @@ const Header = () => {
         )}
       </div>
 
-        <div
-       className={`w-1/2 md:w-1/5 h-auto fixed top-16 md:top-20 left-0  bg-slate-200 text-center text-black px-5 py-4
+      <div
+        className={`w-1/2 md:w-1/5 h-auto fixed top-16 md:top-20 left-0  bg-slate-200 text-center text-black px-5 py-4
     space-y-4 shadow-xl rounded-r-2xl transform transition-transform duration-300 ease-in-out z-50
     ${openMenu ? "translate-x-0" : "-translate-x-full"}`}
       >
@@ -103,7 +185,7 @@ const Header = () => {
           Home
         </NavLink>
 
-         <NavLink
+        <NavLink
           to="/about"
           onClick={() => setOpenMenu(false)}
           className={({ isActive }) =>
@@ -116,8 +198,36 @@ const Header = () => {
         >
           About
         </NavLink>
-
       </div>
+      {openDialogForLogout && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
+          <div className="bg-white rounded-2xl shadow-lg p-6 w-80">
+            <h2 className="text-lg font-semibold text-gray-800">
+              Confirm Logout
+            </h2>
+            <p className="text-sm text-gray-600 mt-2">
+              Are you sure you want to logout?
+            </p>
+
+            <div className="flex justify-end gap-3 mt-6">
+              <button
+                onClick={() => {
+                  setOpenDialogForLogout(false);
+                }}
+                className="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 hover:bg-gray-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={logout}
+                className="px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

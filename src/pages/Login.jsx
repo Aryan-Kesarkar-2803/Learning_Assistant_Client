@@ -51,6 +51,7 @@ const LoginPage = () => {
             token: response?.data?.token || '',
             userDetails:{
               name: response?.data?.name || '',
+              email:response?.data?.email || '',
               id: response?.data?.id || '',
             }
           })

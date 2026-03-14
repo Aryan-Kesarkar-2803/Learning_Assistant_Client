@@ -61,7 +61,9 @@ const RegisterPage = () => {
   const handleChangeEmailForUser = (e) =>{
         setEmailForUser(e.target.value)
   }
-  
+  const handlePasswordChangeForUser  = (e) =>{
+        setPasswordForUser(e.target.value)
+  }
 
   return (
     <>
