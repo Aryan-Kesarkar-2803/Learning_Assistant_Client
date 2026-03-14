@@ -1,0 +1,1 @@
+export const verifyTokenEndpoint = '/verify-token';
