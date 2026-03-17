@@ -155,14 +155,17 @@ const Header = () => {
             </div>
           </ClickAwayListener>
         ) : (
-          <button
-            className="bg-yellow-400 text-indigo-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-300"
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Login
-          </button>
+          location.pathname != "/login" &&
+          location.pathname != "/register" && (
+            <button
+              className="bg-yellow-400 text-indigo-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-300"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login
+            </button>
+          )
         )}
       </div>
 
@@ -186,36 +189,34 @@ const Header = () => {
         </NavLink>
         {authUser?.token && authUser?.token !== null && (
           <>
-          <NavLink
-            to="/get-started"
-            onClick={() => setOpenMenu(false)}
-            className={({ isActive }) =>
-              `block py-1 rounded-md transition-all duration-200 ${
-                isActive
-                  ? "text-indigo-600 font-semibold border-b-2 border-indigo-600"
-                  : "hover:text-indigo-600 hover:border-b-2 hover:border-indigo-400"
-              }`
-            }
-          >
-            Get Started
-          </NavLink>
+            <NavLink
+              to="/get-started"
+              onClick={() => setOpenMenu(false)}
+              className={({ isActive }) =>
+                `block py-1 rounded-md transition-all duration-200 ${
+                  isActive
+                    ? "text-indigo-600 font-semibold border-b-2 border-indigo-600"
+                    : "hover:text-indigo-600 hover:border-b-2 hover:border-indigo-400"
+                }`
+              }
+            >
+              Get Started
+            </NavLink>
 
-           <NavLink
-            to="/my-learnings"
-            onClick={() => setOpenMenu(false)}
-            className={({ isActive }) =>
-              `block py-1 rounded-md transition-all duration-200 ${
-                isActive
-                  ? "text-indigo-600 font-semibold border-b-2 border-indigo-600"
-                  : "hover:text-indigo-600 hover:border-b-2 hover:border-indigo-400"
-              }`
-            }
-          >
-            My Learnings
-          </NavLink>
-
-          
-            </>
+            <NavLink
+              to="/my-learnings"
+              onClick={() => setOpenMenu(false)}
+              className={({ isActive }) =>
+                `block py-1 rounded-md transition-all duration-200 ${
+                  isActive
+                    ? "text-indigo-600 font-semibold border-b-2 border-indigo-600"
+                    : "hover:text-indigo-600 hover:border-b-2 hover:border-indigo-400"
+                }`
+              }
+            >
+              My Learnings
+            </NavLink>
+          </>
         )}
 
         <NavLink
