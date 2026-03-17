@@ -9,6 +9,9 @@ import RegisterPage from './pages/RegisterPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import Profile from './pages/Profile/Profile.jsx'
 import Settings from './pages/Settings.jsx'
+import MyLearnings from './pages/MyLearnings.jsx'
+import NotFound from './pages/NotFound.jsx'
+import GetStarted from './pages/GetStarted.jsx'
 
 
 const router = createBrowserRouter(
@@ -20,6 +23,9 @@ const router = createBrowserRouter(
         <Route path='about' element={<AboutPage/>} />
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/settings' element={<Settings/>}/>
+        <Route path='/my-learnings' element={<MyLearnings/>}/>
+        <Route path='/get-started' element={<GetStarted/>}/>
+        <Route path='*' element={<NotFound/>}/>
     </Route>
   )
 )

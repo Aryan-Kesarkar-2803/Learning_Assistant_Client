@@ -184,6 +184,39 @@ const Header = () => {
         >
           Home
         </NavLink>
+        {authUser?.token && authUser?.token !== null && (
+          <>
+          <NavLink
+            to="/get-started"
+            onClick={() => setOpenMenu(false)}
+            className={({ isActive }) =>
+              `block py-1 rounded-md transition-all duration-200 ${
+                isActive
+                  ? "text-indigo-600 font-semibold border-b-2 border-indigo-600"
+                  : "hover:text-indigo-600 hover:border-b-2 hover:border-indigo-400"
+              }`
+            }
+          >
+            Get Started
+          </NavLink>
+
+           <NavLink
+            to="/my-learnings"
+            onClick={() => setOpenMenu(false)}
+            className={({ isActive }) =>
+              `block py-1 rounded-md transition-all duration-200 ${
+                isActive
+                  ? "text-indigo-600 font-semibold border-b-2 border-indigo-600"
+                  : "hover:text-indigo-600 hover:border-b-2 hover:border-indigo-400"
+              }`
+            }
+          >
+            My Learnings
+          </NavLink>
+
+          
+            </>
+        )}
 
         <NavLink
           to="/about"
