@@ -33,7 +33,7 @@ const MyLearnings = () => {
   useEffect(() => {
     const temp = tab === "active" ? activeLearnings : completedLearnings;
     setData(temp);
-  }, [tab]);
+  }, [tab,activeLearnings,completedLearnings]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 px-6 py-10">
