@@ -12,6 +12,7 @@ import Settings from './pages/Settings.jsx'
 import MyLearnings from './pages/MyLearnings.jsx'
 import NotFound from './pages/NotFound.jsx'
 import GetStarted from './pages/GetStarted/GetStarted.jsx'
+import Roadmap from './pages/GetStarted/Roadmap.jsx'
 
 
 const router = createBrowserRouter(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
         <Route path='/my-learnings' element={<MyLearnings/>}/>
         <Route path='/get-started'>
           <Route path='' element={<GetStarted/>}/>
+          <Route path='roadmap' element={<Roadmap/>}/>
           
         </Route>
 
