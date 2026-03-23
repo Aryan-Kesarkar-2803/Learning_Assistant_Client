@@ -8,6 +8,7 @@ import { saveRoadmap } from "../../utils/repository/getStarted";
 const Roadmap = () => {
   const [roadmap, setRoadmap] = useAtom(roadmapAtom);
   const [authUser, setAuthUser] = useAtom(authUserAtom);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   if (!roadmap?.roadmap || roadmap?.roadmap == "") {
@@ -15,6 +16,7 @@ const Roadmap = () => {
   }
 
   const handleSaveRoadmap = async () => {
+    setLoading(true);
     const formattedRoadmap = convertToRoadmap(roadmap?.roadmap);
    
     const learning = {
@@ -24,7 +26,7 @@ const Roadmap = () => {
     }
 //  console.log(learning); return;
     const response = await saveRoadmap(learning);
-
+    setLoading(false);
     if(!response){
       return;
     }
@@ -87,12 +89,22 @@ const Roadmap = () => {
               Back
             </button>
 
+
             <button
-              className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-xl self-end hover:bg-blue-700 transition"
-              onClick={handleSaveRoadmap}
-            >
-              Proceed
-            </button>
+            disabled={loading}
+            onClick={handleSaveRoadmap}
+            className={`px-6 py-3 flex items-center justify-center ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
+            } text-white rounded-xl transition min-w-[120px]`}
+          >
+            {loading ? (
+              <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+            ) : (
+              "Proceed"
+            )}
+          </button>
           </div>
         </div>
       </div>
