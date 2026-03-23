@@ -18,16 +18,16 @@ const Roadmap = () => {
   const handleSaveRoadmap = async () => {
     setLoading(true);
     const formattedRoadmap = convertToRoadmap(roadmap?.roadmap);
-   
+
     const learning = {
       roadmap: formattedRoadmap || [],
-      topic: roadmap?.topic || '',
-      userId: authUser?.userDetails?.id || '',
-    }
-//  console.log(learning); return;
+      topic: roadmap?.topic || "",
+      userId: authUser?.userDetails?.id || "",
+    };
+    //  console.log(learning); return;
     const response = await saveRoadmap(learning);
     setLoading(false);
-    if(!response){
+    if (!response) {
       return;
     }
     console.log(response);
@@ -79,32 +79,30 @@ const Roadmap = () => {
               className="w-full h-80 p-4 border rounded-2xl focus:outline-none"
             />
           </div>
-          <div className="w-full flex justify-between mt-2">
+
+          <div className="w-full flex justify-between mt-6">
             <button
-              className="mt-6 px-6 py-3 bg-red-600 text-white rounded-xl self-start hover:bg-red-700 transition"
-              onClick={() => {
-                navigate("/get-started");
-              }}
+              className="px-6 h-12 flex items-center justify-center bg-red-600 text-white rounded-xl hover:bg-red-700 transition"
+              onClick={() => navigate("/get-started")}
             >
               Back
             </button>
 
-
             <button
-            disabled={loading}
-            onClick={handleSaveRoadmap}
-            className={`px-6 py-3 flex items-center justify-center ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
-            } text-white rounded-xl transition min-w-[120px]`}
-          >
-            {loading ? (
-              <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-            ) : (
-              "Proceed"
-            )}
-          </button>
+              disabled={loading}
+              onClick={handleSaveRoadmap}
+              className={`px-6 h-12 flex items-center justify-center ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700"
+              } text-white rounded-xl transition min-w-[120px]`}
+            >
+              {loading ? (
+                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+              ) : (
+                "Proceed"
+              )}
+            </button>
           </div>
         </div>
       </div>
