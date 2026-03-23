@@ -12,6 +12,8 @@ const GetStarted = () => {
   const [roadmap, setRoadmap] = useAtom(roadmapAtom);
 
   const handleProceed = async () => {
+    if (roadmap?.topic == null || roadmap?.topic == "") return;
+
     setLoading(true);
 
     const response = await generateRoadmap(roadmap?.topic?.trim());
@@ -21,12 +23,13 @@ const GetStarted = () => {
       const data = response?.data || "";
 
       if (
-        data == "Request rejected: topic not allowed." ||
-        data == "Out of scope: I cannot generate a roadmap for this topic."
+        data.includes("Request rejected") ||
+        data.includes("Out of scope") ||
+        data.includes("Invalid input")
       ) {
         errorNotification({
-          title: "Topic not allowed",
-          message: "Please change the topic",
+          title: "Topic not supported",
+          message: "Try different or more specific topic",
         });
         return;
       }

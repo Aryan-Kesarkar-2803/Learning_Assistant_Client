@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { authUserAtom, roadmapAtom } from "../../store/other";
 import { TextareaAutosize } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -11,9 +11,6 @@ const Roadmap = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  if (!roadmap?.roadmap || roadmap?.roadmap == "") {
-    navigate("/get-started");
-  }
 
   const handleSaveRoadmap = async () => {
     setLoading(true);
@@ -23,6 +20,7 @@ const Roadmap = () => {
       roadmap: formattedRoadmap || [],
       topic: roadmap?.topic || "",
       userId: authUser?.userDetails?.id || "",
+      isCompleted: false,
     };
     //  console.log(learning); return;
     const response = await saveRoadmap(learning);
@@ -30,7 +28,8 @@ const Roadmap = () => {
     if (!response) {
       return;
     }
-    console.log(response);
+    setRoadmap({});
+    navigate('/my-learnings')
   };
 
   const convertToRoadmap = (text) => {
@@ -58,12 +57,19 @@ const Roadmap = () => {
     return roadmap;
   };
 
+  useEffect(()=>{
+
+  if (!roadmap?.roadmap || roadmap?.roadmap == "") {
+    navigate("/get-started");
+  }
+  },[])
+
   return (
     <div className="min-h-screen py-8 bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 px-4">
       {/* Content Wrapper */}
       <div className="max-w-3xl mx-auto mt-4 text-center">
         {/* Heading */}
-        <h1 className="text-4xl font-bold text-gray-800">Checkout RoadMap</h1>
+        <h1 className="text-4xl font-bold text-gray-800">Checkout Roadmap</h1>
 
         {/* Subtext */}
         {/* <p className="mt-2 text-gray-600">

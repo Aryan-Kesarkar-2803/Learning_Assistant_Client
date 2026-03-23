@@ -4,7 +4,7 @@ import { toast } from "react-toastify"
 export const successNotification = ({
   title = "",
   message = "",
-  duration = 1000,
+  duration = 1500,
   zIndex = 9999
 }) => {
    const isMobileView = window.innerWidth <= 768
@@ -30,7 +30,7 @@ export const successNotification = ({
 export const errorNotification = ({
   title = "",
   message = "",
-  duration = 1000,
+  duration = 1500,
   zIndex = 9999
 }) => {
    const isMobileView = window.innerWidth <= 768
@@ -56,7 +56,7 @@ export const errorNotification = ({
 export const alertNotification = ({
   title = "",
   message = "",
-  duration = 1000,
+  duration = 1500,
   zIndex = 9999
 }) => {
    const isMobileView = window.innerWidth <= 768
