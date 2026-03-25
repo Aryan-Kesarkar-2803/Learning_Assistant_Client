@@ -3,3 +3,4 @@ import { atomWithStorage } from "jotai/utils";
 
 export const authUserAtom = atomWithStorage('user',{});
 export const roadmapAtom = atom();
+export const activeLearningAtom = atom();

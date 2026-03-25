@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { getUsersLearnings } from "../utils/repository/learnings";
+import { getLearningById, getUsersLearnings } from "../../utils/repository/learnings";
 import { useAtom } from "jotai";
-import { authUserAtom } from "../store/other";
-import Loader from "../components/globalComponents/Loader";
+import { activeLearningAtom, authUserAtom } from "../../store/other";
+import Loader from "../../components/globalComponents/Loader";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MyLearnings = () => {
   const [tab, setTab] = useState("active");
   const [authUser, setAuthUser] = useAtom(authUserAtom);
+  const [learning, setLearning] = useAtom(activeLearningAtom);
   const [data, setData] = useState([]);
   const [activeLearnings, setActiveLearnings] = useState([]);
   const [completedLearnings, setCompletedLearnings] = useState([])
   const [loading, setLoading] = useState(false);
-
-  // const activeLearnings = [
-  //   { title: "React", progress: 60, steps: 6 },
-  //   { title: "Machine Learning", progress: 30, steps: 8 },
-  // ];
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const fetchUsersLearning = async () => {
     setLoading(true);
@@ -29,6 +28,19 @@ const MyLearnings = () => {
     setActiveLearnings(temp);
     setCompletedLearnings(temp1);
   };
+
+  const handleSelectLearning = async(id = "") => {
+    if(id == null || id == "")return;
+
+    const response = await getLearningById(id);
+    if(!response) return;
+
+    if(response && response?.data){
+      setLearning(response?.data || {});
+      navigate(`${location?.pathname}/learning`);
+    }
+    
+  }
 
   useEffect(() => {
     if (authUser?.userDetails?.id) {
@@ -78,27 +90,28 @@ const MyLearnings = () => {
               {(activeLearnings ?? []).map((item, index) => (
                 <div key={index} className="bg-white rounded-2xl shadow-md p-5">
                   <h2 className="text-xl font-semibold">{item?.topic || ""}</h2>
-                  <p className="text-sm text-gray-500">
+                  {/* <p className="text-sm text-gray-500">
                     {(item?.roadmap ?? [])?.length} Steps
-                  </p>
+                  </p> */}
 
                   {/* Progress */}
                   <div className="mt-4">
                     <div className="w-full h-2 bg-gray-200 rounded-full">
                       <div
-                        className={`h-2 rounded-full ${
-                          tab === "completed" ? "bg-green-600" : "bg-blue-600"
-                        }`}
+                        className={`h-2 rounded-full bg-blue-600`}
                         style={{ width: `${item?.progress || 10}%` }}
                       />
                     </div>
                     <p className="text-xs mt-1 text-gray-500">
-                      {item?.progress || 0}% completed
+                      {item?.progress || 10}% completed
                     </p>
                   </div>
 
-                  <button className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
-                    Continue
+                  <button 
+                  className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+                  onClick={()=>{handleSelectLearning(item?.id)}}
+                  >
+                    {item.isStarted ? "Continue":"Start Learning"}
                   </button>
                 </div>
               ))}
@@ -108,17 +121,15 @@ const MyLearnings = () => {
               {(completedLearnings ?? []).map((item, index) => (
                 <div key={index} className="bg-white rounded-2xl shadow-md p-5">
                   <h2 className="text-xl font-semibold">{item?.topic || ""}</h2>
-                  <p className="text-sm text-gray-500">
+                  {/* <p className="text-sm text-gray-500">
                     {(item?.roadmap ?? [])?.length} Steps
-                  </p>
+                  </p> */}
 
                   {/* Progress */}
                   <div className="mt-4">
                     <div className="w-full h-2 bg-gray-200 rounded-full">
                       <div
-                        className={`h-2 rounded-full ${
-                          tab === "completed" ? "bg-green-600" : "bg-blue-600"
-                        }`}
+                        className={`h-2 rounded-full bg-blue-600`}
                         style={{ width: `${item?.progress || 10}%` }}
                       />
                     </div>

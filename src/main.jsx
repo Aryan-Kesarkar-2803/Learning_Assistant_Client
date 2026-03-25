@@ -9,10 +9,11 @@ import RegisterPage from './pages/RegisterPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import Profile from './pages/Profile/Profile.jsx'
 import Settings from './pages/Settings.jsx'
-import MyLearnings from './pages/MyLearnings.jsx'
 import NotFound from './pages/NotFound.jsx'
 import GetStarted from './pages/GetStarted/GetStarted.jsx'
 import Roadmap from './pages/GetStarted/Roadmap.jsx'
+import MyLearnings from './pages/myLearnings/MyLearnings.jsx'
+import Learning from './pages/myLearnings/Learning.jsx'
 
 
 const router = createBrowserRouter(
@@ -24,10 +25,17 @@ const router = createBrowserRouter(
         <Route path='about' element={<AboutPage/>} />
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/settings' element={<Settings/>}/>
-        <Route path='/my-learnings' element={<MyLearnings/>}/>
+      
+
         <Route path='/get-started'>
           <Route path='' element={<GetStarted/>}/>
           <Route path='roadmap' element={<Roadmap/>}/>
+          
+        </Route>
+
+         <Route path='/my-learnings'>
+          <Route path='' element={<MyLearnings/>}/>
+          <Route path='learning' element={<Learning/>}/>
           
         </Route>
 
