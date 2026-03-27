@@ -39,7 +39,8 @@ const LearningPage = () => {
     }
   }, [learning]);
 
-  const toggleTopic = (stepIndex, topicIndex) => {
+  const toggleTopic = async (stepIndex, topicIndex) => {
+    setLoading(true);
     const updated = structuredClone(data);
 
     updated.roadmap[stepIndex].topics[topicIndex].isCompleted =
@@ -49,7 +50,9 @@ const LearningPage = () => {
       stepIndex
     ].topics.every((t) => t.isCompleted);
 
+    const response = await saveRoadmap(updated);
     setData(updated);
+    setLoading(false);
   };
 
   const isEnabled = (index) => {
@@ -99,7 +102,7 @@ const LearningPage = () => {
     if (data && data?.roadmap?.length > 0) {
       setCurrentStep(data.roadmap[activeStep] || {});
     }
-  }, [data,activeStep]);
+  }, [data, activeStep]);
 
   useEffect(() => {
     if (Object.keys(currentStep)?.length > 0) {
@@ -116,8 +119,6 @@ const LearningPage = () => {
       fetchVideo(currentTopic?.topicName);
     }
   }, [currentTopic]);
-
-
 
   return loading ? (
     <Loader texts={textForLoading} />
