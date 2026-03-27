@@ -1,4 +1,4 @@
-import { getLearningByIdEndpoint, getUsersLearningEndpoint } from "../apiNames/learnings";
+import { getLearningByIdEndpoint, getUsersLearningEndpoint, getVideoEndpoint } from "../apiNames/learnings";
 import { getRequest } from "../networks/server";
 import { errorNotification } from "../toast";
 
@@ -30,6 +30,29 @@ export const getLearningById = async(id) => {
             url:getLearningByIdEndpoint,
             params:{
                 id:id,
+            }
+        })
+        if(response?.status != 200){
+            errorNotification({message:response?.message})
+        }
+        return response;
+    }catch(e){
+        errorNotification({
+            title: 'Error',
+            message:'Somthing went wrong'
+        })
+        console.log(e?.message)
+        return false;
+    }
+
+}
+
+export const getVideoForTopic = async(topic) => {
+    try{
+        const response = await getRequest({
+            url: getVideoEndpoint,
+            params:{
+                topic:topic,
             }
         })
         if(response?.status != 200){

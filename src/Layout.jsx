@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useAtom } from "jotai";
 import { authUserAtom } from "./store/other";
-import { firstRequest } from "./utils/repository/other";
+import { firstRequest, homeRequestSentimentModel } from "./utils/repository/other";
 
 const Layout = () => {
   const navigate = useNavigate()
@@ -12,6 +12,7 @@ const Layout = () => {
 
   const getAuthenticationStatus = async() =>{
       const res = await firstRequest();
+      const res1 = await homeRequestSentimentModel();
       if(res == false){
         setAuthUser({})
         navigate("/")
