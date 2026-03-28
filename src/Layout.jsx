@@ -11,8 +11,12 @@ const Layout = () => {
   const [authUser, setAuthUser] = useAtom(authUserAtom)
 
   const getAuthenticationStatus = async() =>{
-      const res = await firstRequest();
-      const res1 = await homeRequestSentimentModel();
+
+      const [res,res1] = await Promise.all([
+        firstRequest(),
+        homeRequestSentimentModel()
+      ])
+
       if(res == false){
         setAuthUser({})
         navigate("/")
