@@ -43,7 +43,7 @@ const Roadmap = () => {
       const topics = lines.slice(1).map((line) => ({
         topicName: line.replace("-", "").trim(),
         videoLink: "",
-        docLink: "",
+        docId: "",
         isCompleted: false,
       }));
 

@@ -4,16 +4,17 @@ import { CircularProgress, Box, Typography } from "@mui/material";
 const Loader = ({
   size = 80,
   color = "primary",
-  texts = ["...Please wait"],
+  texts = [],
   interval = 2000,
 }) => {
   const [index, setIndex] = useState(0);
+  const textForLoader = [...texts,"...Please wait"]
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % texts.length);
+      setIndex((prev) => (prev + 1) % textForLoader.length);
     }, interval);
     return () => clearInterval(timer);
-  }, [texts, interval]);
+  }, [textForLoader, interval]);
 
   return (
     <Box
@@ -39,7 +40,7 @@ const Loader = ({
         className="text-base"
         sx={{ mt: 2, color: "#fff", fontWeight: 500 }}
       >
-        {texts[index]}
+        {textForLoader[index]}
       </Typography>
     </Box>
   );
