@@ -1,4 +1,4 @@
-import { generateNotesEndpoint, getLearningByIdEndpoint, getNotesEndpoint, getUsersLearningEndpoint, getVideoEndpoint } from "../apiNames/learnings";
+import { generateNotesEndpoint, generateQuizEndpoint, getLearningByIdEndpoint, getNotesEndpoint, getUsersLearningEndpoint, getVideoEndpoint } from "../apiNames/learnings";
 import { getRequest } from "../networks/server";
 import { errorNotification } from "../toast";
 
@@ -98,6 +98,28 @@ export const getNotesById = async(id="") => {
             url: getNotesEndpoint,
             params:{
                 id:id,
+            }
+        })
+        if(response?.status != 200){
+            errorNotification({message:response?.message})
+        }
+        return response;
+    }catch(e){
+        errorNotification({
+            title: 'Error',
+            message:'Somthing went wrong'
+        })
+        console.log(e?.message)
+        return false;
+    }
+
+}
+export const generateQuizForTopic = async(topic) => {
+    try{
+        const response = await getRequest({
+            url: generateQuizEndpoint,
+            params:{
+                topic:topic,
             }
         })
         if(response?.status != 200){
