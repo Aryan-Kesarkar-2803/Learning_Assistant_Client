@@ -85,8 +85,9 @@ const LearningPage = () => {
       );
 
     // check count is near 100
-    if (updated.progress + Math.round(1 / subtopicCount) >= 100) {
+    if (updated.progress + (2 * parseFloat(Math.round(1 / subtopicCount).toFixed(2))) > 100) {
       updated.progress = 100;
+      updated.isCompleted = true;
     } else {
       let temp = parseFloat(((1 / subtopicCount)*100).toFixed(2));
       updated.progress = parseFloat((updated.progress + temp).toFixed(2));
@@ -279,6 +280,7 @@ const LearningPage = () => {
                 >
                   <input
                     type="checkbox"
+                    disabled={topic?.videoLink == '' || topic?.docId == ''}
                     className="h-4 w-4 cursor-pointer"
                     checked={topic.isCompleted}
                     onChange={(e) => {
@@ -288,7 +290,7 @@ const LearningPage = () => {
                   />
 
                   <span
-                    className={`text-sm ${
+                    className={`text-sm cursor-default ${
                       topic.isCompleted ? " text-gray-400" : ""
                     }`}
                   >
@@ -313,8 +315,8 @@ const LearningPage = () => {
                   // />
                   <MemoizedIframe src={videoUrl || ""} />
                 ) : (
-                  <div className="h-64 flex items-center justify-center text-gray-400">
-                    No video available
+                  <div className="h-64 flex items-center justify-center text-gray-700">
+                    ... Loading please wait 
                   </div>
                 )}
               </div>

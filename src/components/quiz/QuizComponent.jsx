@@ -36,6 +36,7 @@ const QuizComponent = ({ questions = [], onComplete }) => {
         return;
       }
       onComplete();
+      questions = [];
   }
 
   const progress = (Object.keys(answers).length / questions.length) * 100;
