@@ -89,7 +89,7 @@ const LearningPage = () => {
       updated.progress = 100;
     } else {
       let temp = parseFloat(((1 / subtopicCount)*100).toFixed(2));
-      updated.progress += temp;
+      updated.progress = parseFloat((updated.progress + temp).toFixed(2));
     }
 
     const response = await saveRoadmap(updated);
