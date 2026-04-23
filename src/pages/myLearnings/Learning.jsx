@@ -12,6 +12,7 @@ import {
 import { saveRoadmap } from "../../utils/repository/getStarted";
 import LearningAccordion from "../../components/LearningAccordian";
 import QuizModal from "../../components/quiz/QuizModal";
+import MemoizedIframe from "../../components/globalComponents/MemoizedIframe";
 
 const getYouTubeEmbedUrl = (url) => {
   if (!url) return "";
@@ -32,10 +33,10 @@ const LearningPage = () => {
   const [currentStep, setCurrentStep] = useState({});
   const [currentTopic, setCurrentTopic] = useState({});
   const [questionsForQuiz, setQuestionsForQuiz] = useState([]);
-  const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [openQuiz, setOpenQuiz] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
   const [notes, setNotes] = useState("");
+  const [subtopicCount, setSubtopicCount] = useState(0);
   const navigate = useNavigate();
 
   if (!data) {
@@ -57,7 +58,7 @@ const LearningPage = () => {
     if (updated.roadmap[stepIndex].topics[topicIndex].isCompleted) return;
 
     setLoading(true);
-    setTextForLoading(prev => [...prev, "...Generating quiz"])
+    setTextForLoading((prev) => [...prev, "...Generating quiz"]);
     const res = await generateQuizForTopic(
       `${currentTopic?.topicName} in ${data?.topic}`,
     );
@@ -67,20 +68,6 @@ const LearningPage = () => {
     setActiveTopicForQuiz({ stepIndex, topicIndex });
     setLoading(false);
     setTextForLoading([]);
-
-
-    // const updated = structuredClone(data);
-
-    // updated.roadmap[stepIndex].topics[topicIndex].isCompleted =
-    //   !updated.roadmap[stepIndex].topics[topicIndex].isCompleted;
-
-    // updated.roadmap[stepIndex].isCompleted = updated.roadmap[
-    //   stepIndex
-    // ].topics.every((t) => t.isCompleted);
-
-    // const response = await saveRoadmap(updated);
-    // setData(updated);
-    // setLoading(false);
   };
 
   const handleQuizComplete = async () => {
@@ -91,10 +78,19 @@ const LearningPage = () => {
     updated.roadmap[activeTopicForQuiz?.stepIndex].topics[
       activeTopicForQuiz?.topicIndex
     ].isCompleted = true;
+   
+    updated.roadmap[activeTopicForQuiz?.stepIndex].isCompleted =
+      updated.roadmap[activeTopicForQuiz?.stepIndex].topics.every(
+        (t) => t.isCompleted,
+      );
 
-     updated.roadmap[activeTopicForQuiz?.stepIndex].isCompleted = updated.roadmap[
-      activeTopicForQuiz?.stepIndex
-    ].topics.every((t) => t.isCompleted);
+    // check count is near 100
+    if (updated.progress + Math.round(1 / subtopicCount) >= 100) {
+      updated.progress = 100;
+    } else {
+      let temp = parseFloat(((1 / subtopicCount)*100).toFixed(2));
+      updated.progress += temp;
+    }
 
     const response = await saveRoadmap(updated);
     setData(updated);
@@ -204,16 +200,33 @@ const LearningPage = () => {
       if (currentTopic?.videoLink && currentTopic?.videoLink?.length > 0) {
         setVideoUrl(currentTopic?.videoLink);
       } else {
+        setVideoUrl("");
         fetchVideo(currentTopic?.topicName);
       }
 
       if (currentTopic?.docId && currentTopic?.docId?.length > 0) {
+        setNotes("");
         fetchNotes(currentTopic?.docId);
       } else {
+        setNotes("");
         generateNotes(currentTopic?.topicName);
       }
     }
   }, [currentTopic]);
+
+  useEffect(() => {
+    if (
+      data?.roadmap &&
+      (data?.roadmap || [])?.length > 0 &&
+      subtopicCount == 0
+    ) {
+      let count = 0;
+      (data?.roadmap || [])?.forEach((item) => {
+        count += (item?.topics || [])?.length;
+      });
+      setSubtopicCount(count || 0);
+    }
+  }, [data]);
 
   return loading ? (
     <Loader texts={[...textForLoading]} />
@@ -260,12 +273,13 @@ const LearningPage = () => {
                 <div
                   key={index}
                   onClick={() => setActiveTopic(index)}
-                  className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer ${
+                  className={`flex items-center gap-2 p-2 rounded-lg ${
                     activeTopic === index ? "bg-blue-50" : "hover:bg-gray-100"
                   }`}
                 >
                   <input
                     type="checkbox"
+                    className="h-4 w-4 cursor-pointer"
                     checked={topic.isCompleted}
                     onChange={(e) => {
                       e.stopPropagation();
@@ -290,12 +304,14 @@ const LearningPage = () => {
 
               <div className="rounded-lg overflow-hidden border">
                 {videoUrl ? (
-                  <iframe
-                    className="w-full aspect-video"
-                    src={videoUrl}
-                    title="video"
-                    allowFullScreen
-                  />
+                  // <iframe
+                  //   className="w-full aspect-video"
+                  //   src={videoUrl}
+                  //   loading="lazy"
+                  //   title="video"
+                  //   allowFullScreen
+                  // />
+                  <MemoizedIframe src={videoUrl || ""} />
                 ) : (
                   <div className="h-64 flex items-center justify-center text-gray-400">
                     No video available

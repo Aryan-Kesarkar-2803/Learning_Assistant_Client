@@ -99,11 +99,11 @@ const MyLearnings = () => {
                     <div className="w-full h-2 bg-gray-200 rounded-full">
                       <div
                         className={`h-2 rounded-full bg-blue-600`}
-                        style={{ width: `${item?.progress || 10}%` }}
+                        style={{ width: `${item?.progress || 0}%` }}
                       />
                     </div>
                     <p className="text-xs mt-1 text-gray-500">
-                      {item?.progress || 10}% completed
+                      {item?.progress || 0}% completed
                     </p>
                   </div>
 

@@ -21,6 +21,7 @@ const Roadmap = () => {
       topic: roadmap?.topic || "",
       userId: authUser?.userDetails?.id || "",
       isCompleted: false,
+      progress: 0,
     };
     //  console.log(learning); return;
     const response = await saveRoadmap(learning);
