@@ -224,8 +224,6 @@
 
 // export default Header;
 
-
-
 // below is new one
 
 import { useAtom } from "jotai";
@@ -244,13 +242,11 @@ const Header = () => {
   const [openDialogForLogout, setOpenDialogForLogout] = useState(false);
   const [authUser, setAuthUser] = useAtom(authUserAtom);
 
-  // ── Dark Mode State ──────────────────────────────────────────────────────────
+
   const [isDark, setIsDark] = useState(() => {
-    return (
-      localStorage.getItem("theme") === "dark" ||
-      (!localStorage.getItem("theme") &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    );
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved === "dark";
+    return false; 
   });
 
   useEffect(() => {
@@ -263,7 +259,6 @@ const Header = () => {
       localStorage.setItem("theme", "light");
     }
   }, [isDark]);
-  // ────────────────────────────────────────────────────────────────────────────
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -286,7 +281,6 @@ const Header = () => {
   return (
     <header className="w-full h-16 md:h-20 bg-gradient-to-r from-gray-50 to-blue-100 dark:from-gray-900 dark:to-blue-950 text-black dark:text-white shadow-md dark:shadow-gray-900 z-10 transition-colors duration-300">
       <div className="mx-auto flex items-center justify-between px-4 py-3 md:py-4 pl-7">
-
         {/* Left — Hamburger + Logo */}
         <div className="flex items-center gap-5">
           <button
@@ -303,7 +297,6 @@ const Header = () => {
 
         {/* Right — Dark Mode Toggle + Auth */}
         <div className="flex items-center gap-3">
-
           {/* ── Dark Mode Toggle Button ── */}
           <button
             onClick={() => setIsDark((prev) => !prev)}
@@ -489,4 +482,3 @@ const Header = () => {
 };
 
 export default Header;
-
