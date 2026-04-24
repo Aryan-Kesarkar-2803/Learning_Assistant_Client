@@ -14,6 +14,8 @@ const ChatBot = () => {
   const [expanded, setExpanded] = useState(false);
   const [learningAtom] = useAtom(activeLearningAtom)
 
+  const isMobile = window.innerWidth < 640;
+
   const bottomRef = useRef(null);
 
   const [messages, setMessages] = useState([
@@ -85,16 +87,20 @@ const ChatBot = () => {
               : "opacity-0 scale-90 translate-y-6 pointer-events-none"
           }
 
-          ${expanded ? "w-[500px] h-[640px]" : "w-[340px] h-[520px]"}
+          ${expanded && !isMobile  ? "w-[500px] h-[640px]" : "w-[340px] h-[520px]"}
         `}
       >
         <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-indigo-500 to-blue-500 text-white">
           <div className="font-semibold text-sm">Ask Doubts</div>
 
           <div className="flex items-center gap-2">
-            <button onClick={() => setExpanded((p) => !p)}>
+            {
+              !isMobile &&
+              <button onClick={() => setExpanded((p) => !p)}>
               {expanded ? <FiMinimize2 size={16} /> : <FiMaximize2 size={16} />}
             </button>
+            }
+            
 
             <button onClick={() => setOpen(false)}>
               <FiX size={18} />
