@@ -235,15 +235,16 @@ const LearningPage = () => {
   ) : (
 
 <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-  <div className="flex min-h-screen">
+  <div className="flex flex-col md:flex-row min-h-screen">
 
     {/* LEFT SIDEBAR */}
-    <aside className="w-72 border-r border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl sticky top-0 h-screen overflow-y-auto">
-      <div className="p-5 border-b border-gray-200 dark:border-gray-800">
-        <h2 className="text-xl font-black">Steps</h2>
+    <aside className="w-full md:w-72 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl md:sticky top-0 md:h-screen overflow-x-auto md:overflow-y-auto">
+      
+      <div className="p-4 md:p-5 border-b border-gray-200 dark:border-gray-800">
+        <h2 className="text-lg md:text-xl font-black">Steps</h2>
       </div>
 
-      <div className="p-4 space-y-3">
+      <div className="p-3 md:p-4 flex md:block gap-3 md:space-y-3 overflow-x-auto">
         {(data?.roadmap ?? []).map((step, index) => (
           <button
             key={index}
@@ -252,7 +253,7 @@ const LearningPage = () => {
               setActiveStep(index);
               setActiveTopic(0);
             }}
-            className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
+            className={`min-w-[160px] md:w-full text-left p-3 md:p-4 rounded-2xl border transition-all duration-300 ${
               activeStep === index
                 ? "bg-gradient-to-r from-indigo-500 to-blue-500 text-white shadow-lg"
                 : isEnabled(index)
@@ -266,78 +267,93 @@ const LearningPage = () => {
       </div>
     </aside>
 
-    <main className="flex-1 p-6">
- 
-      <h1 className="text-3xl font-black mb-6">{data?.topic}</h1>
+    {/* MAIN */}
+    <main className="flex-1 p-4 md:p-6">
 
-      <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
+      <h1 className="text-2xl md:text-3xl font-black mb-4 md:mb-6">
+        {data?.topic}
+      </h1>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
 
         {/* TOPICS */}
-        <div className="xl:col-span-4">
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-4">
+        <div className="lg:col-span-4">
+          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl md:rounded-3xl p-3 md:p-4">
+            
             <h3 className="font-bold mb-3">Topics</h3>
 
-            {(currentStep?.topics ?? []).map((topic, index) => (
-              <div
-                key={index}
-                onClick={() => setActiveTopic(index)}
-                className={`p-3 rounded-xl cursor-pointer mb-2 transition ${
-                  activeTopic === index
-                    ? "bg-indigo-50 dark:bg-indigo-900/40"
-                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    disabled={topic?.videoLink == "" || topic?.docId == ""}
-                    checked={topic.isCompleted}
-                    onChange={(e) => {
-                      e.stopPropagation();
-                      toggleTopic(activeStep, index);
-                    }}
-                    className="accent-indigo-600"
-                  />
-                  <span
-                    className={`text-sm ${
-                      topic.isCompleted
-                        ? "text-gray-400"
-                        : "text-gray-800 dark:text-gray-200"
-                    }`}
-                  >
-                    {topic.topicName}
-                  </span>
+            <div className="space-y-2">
+              {(currentStep?.topics ?? []).map((topic, index) => (
+                <div
+                  key={index}
+                  onClick={() => setActiveTopic(index)}
+                  className={`p-3 rounded-xl cursor-pointer transition ${
+                    activeTopic === index
+                      ? "bg-indigo-50 dark:bg-indigo-900/40"
+                      : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      disabled={topic?.videoLink == "" || topic?.docId == ""}
+                      checked={topic.isCompleted}
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        toggleTopic(activeStep, index);
+                      }}
+                      className="accent-indigo-600"
+                    />
+                    <span
+                      className={`text-sm ${
+                        topic.isCompleted
+                          ? "text-gray-400"
+                          : "text-gray-800 dark:text-gray-200"
+                      }`}
+                    >
+                      {topic.topicName}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
           </div>
         </div>
 
         {/* VIDEO */}
-        <div className="xl:col-span-8">
-          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-4">
-            <h3 className="font-bold mb-3">{currentTopic?.topicName}</h3>
+        <div className="lg:col-span-8">
+          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl md:rounded-3xl p-3 md:p-4">
+            
+            <h3 className="font-bold mb-3">
+              {currentTopic?.topicName}
+            </h3>
 
             <div className="rounded-xl overflow-hidden border dark:border-gray-700">
               {videoUrl ? (
                 <MemoizedIframe src={videoUrl || ""} />
               ) : (
-                <div className="h-64 flex items-center justify-center text-gray-500">
+                <div className="h-48 md:h-64 flex items-center justify-center text-gray-500">
                   Loading...
                 </div>
               )}
             </div>
-          </div>
 
-         
+          </div>
         </div>
+
       </div>
-            <LearningAccordion text={notes} />
-       
+
+      {/* ACCORDION FULL WIDTH */}
+      <div className="mt-5 md:mt-8">
+        <LearningAccordion text={notes} />
+      </div>
+
       <QuizModal
         questions={questionsForQuiz || []}
         onComplete={handleQuizComplete}
       />
+
     </main>
   </div>
 </div>
