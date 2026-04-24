@@ -331,7 +331,7 @@ const HomePage = () => {
               <span className="group-hover:translate-x-1 transition-transform duration-200 text-xl">→</span>
             </span>
           </button>
-          <p className="text-sm text-gray-400 dark:text-gray-500 mt-4">No credit card required · Free forever plan</p>
+         
         </AnimatedSection>
       </section>
 
