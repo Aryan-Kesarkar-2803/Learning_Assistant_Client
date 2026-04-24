@@ -189,6 +189,7 @@ const HomePage = () => {
           Register today and unlock personalized learning experiences powered by AI.
         </p>
         <button
+        onClick={()=>{navigate('/get-started')}}
           className="bg-blue-500 dark:bg-blue-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-600 dark:hover:bg-blue-500 w-full md:w-auto transition-colors duration-200 shadow-md dark:shadow-blue-900"
         >
           Get Started
