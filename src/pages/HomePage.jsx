@@ -1,122 +1,8 @@
 
-// import React from 'react'
-// import { useNavigate } from 'react-router-dom'
-
-// const HomePage = () => {
-//   const navigate = useNavigate();
-
-//   return (
-//     <div className="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-
-//       {/* Hero Section */}
-//       <section className="flex flex-col md:flex-row items-center justify-between px-10 md:px-16 py-12 md:py-20 bg-gradient-to-r from-blue-100 to-indigo-200 dark:from-blue-950 dark:to-indigo-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-//         <div className="max-w-lg text-center md:text-left">
-//           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-blue-900 dark:text-blue-300">
-//             Learn Smarter, Achieve More 📚
-//           </h2>
-//           <p className="mb-6 text-base md:text-lg text-gray-700 dark:text-gray-300">
-//             Learning Assistant helps students personalize their learning journey with AI-powered tools, interactive modules, and real-time progress tracking.
-//           </p>
-//         </div>
-//         <img
-//           src="learningImage.png"
-//           alt="Smart Learning"
-//           className="rounded-xl mt-8 w-full md:w-1/3 h-auto max-h-80 shadow-lg object-contain dark:opacity-90"
-//         />
-//       </section>
-
-//       {/* Features */}
-//       <section className="px-6 md:px-12 py-16 bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
-//         <h3 className="text-2xl md:text-3xl font-bold text-center mb-10 text-blue-800 dark:text-blue-400">
-//           Why Choose Learning Assistant?
-//         </h3>
-//         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//           <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg dark:shadow-gray-900 text-center transition-colors duration-300 border border-transparent dark:border-gray-700">
-//             <h4 className="text-lg md:text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-//               Personalized Learning Paths
-//             </h4>
-//             <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
-//               AI adapts to your strengths and weaknesses, creating a study plan tailored just for you.
-//             </p>
-//           </div>
-//           <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg dark:shadow-gray-900 text-center transition-colors duration-300 border border-transparent dark:border-gray-700">
-//             <h4 className="text-lg md:text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-//               Interactive Modules
-//             </h4>
-//             <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
-//               Learn through quizzes, flashcards, and simulations that make studying engaging and effective.
-//             </p>
-//           </div>
-//           <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg dark:shadow-gray-900 text-center transition-colors duration-300 border border-transparent dark:border-gray-700">
-//             <h4 className="text-lg md:text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-//               Progress Tracking
-//             </h4>
-//             <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
-//               Monitor your growth with detailed analytics and insights to stay motivated and on track.
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* How It Works */}
-//       <section className="px-6 md:px-12 py-16 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
-//         <h3 className="text-2xl md:text-3xl font-bold text-center mb-10 text-blue-800 dark:text-blue-400">
-//           How It Works?
-//         </h3>
-//         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-//           <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg dark:shadow-gray-900 transition-colors duration-300 border border-transparent dark:border-gray-700">
-//             <span className="text-3xl">📝</span>
-//             <h4 className="text-lg font-semibold mt-3 mb-2 text-gray-900 dark:text-white">Set Your Goals</h4>
-//             <p className="text-sm text-gray-600 dark:text-gray-400">
-//               Define what you want to achieve — exams, skills, or career growth.
-//             </p>
-//           </div>
-//           <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg dark:shadow-gray-900 transition-colors duration-300 border border-transparent dark:border-gray-700">
-//             <span className="text-3xl">⚡</span>
-//             <h4 className="text-lg font-semibold mt-3 mb-2 text-gray-900 dark:text-white">Get Smart Recommendations</h4>
-//             <p className="text-sm text-gray-600 dark:text-gray-400">
-//               Receive AI-powered study plans, resources, and practice exercises.
-//             </p>
-//           </div>
-//           <div className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg dark:shadow-gray-900 transition-colors duration-300 border border-transparent dark:border-gray-700">
-//             <span className="text-3xl">🚀</span>
-//             <h4 className="text-lg font-semibold mt-3 mb-2 text-gray-900 dark:text-white">Track & Improve</h4>
-//             <p className="text-sm text-gray-600 dark:text-gray-400">
-//               Measure progress, refine your approach, and achieve your learning goals.
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* CTA */}
-//       <section className="px-6 md:px-12 py-16 text-center bg-gradient-to-r from-indigo-200 to-blue-200 dark:from-indigo-950 dark:to-blue-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-//         <h3 className="text-2xl md:text-3xl font-bold mb-4 text-blue-900 dark:text-blue-300">
-//           Start Your Smart Learning Journey ✨
-//         </h3>
-//         <p className="mb-6 text-base md:text-lg text-gray-700 dark:text-gray-300">
-//           Register today and unlock personalized learning experiences powered by AI.
-//         </p>
-//         <button
-//         onClick={()=>{navigate('/get-started')}}
-//           className="bg-blue-500 dark:bg-blue-600 text-white px-5 py-3 rounded-lg font-medium hover:bg-blue-600 dark:hover:bg-blue-500 w-full md:w-auto transition-colors duration-200 shadow-md dark:shadow-blue-900"
-//         >
-//           Get Started
-//         </button>
-//       </section>
-
-//     </div>
-//   )
-// }
-
-// export default HomePage
-
-
-// below is new one
-
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-// Intersection Observer hook for scroll animations
+
 const useInView = (threshold = 0.15) => {
   const ref = useRef(null)
   const [inView, setInView] = useState(false)
@@ -312,24 +198,10 @@ const HomePage = () => {
               </button>
             </div>
 
-            {/* Stats */}
-            <div
-              style={{
-                opacity: heroVisible ? 1 : 0,
-                transition: 'opacity 0.8s ease 0.7s',
-              }}
-              className="flex gap-8 mt-12 justify-center md:justify-start"
-            >
-              {[['10K+', 'Learners'], ['500+', 'Topics'], ['98%', 'Satisfaction']].map(([num, label]) => (
-                <div key={label} className="text-center md:text-left">
-                  <div className="text-2xl font-black text-indigo-600 dark:text-indigo-400">{num}</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-500 font-medium uppercase tracking-wider">{label}</div>
-                </div>
-              ))}
-            </div>
+            
           </div>
 
-          {/* Hero image */}
+   
           <div
             style={{
               opacity: heroVisible ? 1 : 0,
@@ -351,7 +223,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Bottom wave */}
+     
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
           <svg viewBox="0 0 1440 60" className="w-full fill-white dark:fill-gray-950" preserveAspectRatio="none" style={{ height: '40px' }}>
             <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" />
@@ -359,7 +231,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ── FEATURES ─────────────────────────────────────────────────────── */}
+
       <section id="features" className="py-24 px-6 md:px-16 bg-white dark:bg-gray-950">
         <AnimatedSection className="text-center mb-16">
           <span className="text-sm font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-3 block">
@@ -393,7 +265,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ── HOW IT WORKS ─────────────────────────────────────────────────── */}
       <section className="py-24 px-6 md:px-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-5 blur-3xl"
           style={{ background: 'radial-gradient(circle, #6366f1, transparent)' }} />
@@ -430,7 +301,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────────────────────── */}
+   
       <section className="py-24 px-6 md:px-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-blue-50 to-violet-50 dark:from-indigo-950 dark:via-blue-950 dark:to-violet-950" />
         <div className="absolute top-8 left-8 w-32 h-32 rounded-full blur-2xl opacity-30 dark:opacity-20"
