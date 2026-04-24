@@ -56,7 +56,7 @@ export const getVideoForTopic = async(topic) => {
             }
         })
         if(response?.status != 200){
-            errorNotification({message:response?.message})
+            errorNotification({message:response?.message || "Something went wrong"})
         }
         return response;
     }catch(e){

@@ -138,7 +138,10 @@ const MyLearnings = () => {
                     </p>
                   </div>
 
-                  <button className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition">
+                  <button 
+                  className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+                  onClick={()=>{handleSelectLearning(item?.id)}}
+                  >
                     View
                   </button>
                 </div>

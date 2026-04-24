@@ -85,12 +85,13 @@ const LearningPage = () => {
       );
 
     // check count is near 100
-    if (updated.progress + (2 * parseFloat(Math.round(1 / subtopicCount).toFixed(2))) > 100) {
+    let temp = Math.floor((1 / subtopicCount) * 100 * 100) / 100;
+
+    if ((updated?.progress + (2 * temp)) > 100) {
       updated.progress = 100;
       updated.isCompleted = true;
     } else {
-      let temp = parseFloat(((1 / subtopicCount)*100).toFixed(2));
-      updated.progress = parseFloat((updated.progress + temp).toFixed(2));
+      updated.progress = Math.floor((updated.progress + temp) * 100) / 100;
     }
 
     const response = await saveRoadmap(updated);

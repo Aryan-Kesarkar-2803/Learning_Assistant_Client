@@ -11,9 +11,9 @@ export const postRequest = async ({ headers = {}, url, data }) => {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
-        Connection: "keep-alive",
+        // "User-Agent":
+        //   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
+        // Connection: "keep-alive",
 
         ...headers,
         ...(isFormData ? {} : { "Content-Type": "application/json" }),
@@ -33,9 +33,6 @@ export const getRequest = async ({ headers = {}, url, params }) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
-        Connection: "keep-alive",
         ...headers,
       },
       params: {
@@ -44,7 +41,7 @@ export const getRequest = async ({ headers = {}, url, params }) => {
     });
     return response?.data;
   } catch (e) {
-    console.error("Error - ", e.message);
+    console.error("Error - ", e.response);
     return e?.response || {};
   }
 };
