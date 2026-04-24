@@ -1,4 +1,4 @@
-import { generateNotesEndpoint, generateQuizEndpoint, getLearningByIdEndpoint, getNotesEndpoint, getUsersLearningEndpoint, getVideoEndpoint } from "../apiNames/learnings";
+import { generateNotesEndpoint, generateQuizEndpoint, getLearningByIdEndpoint, getNotesEndpoint, getUsersLearningEndpoint, getVideoEndpoint, solveDoubtEndpoint } from "../apiNames/learnings";
 import { getRequest } from "../networks/server";
 import { errorNotification } from "../toast";
 
@@ -131,6 +131,25 @@ export const generateQuizForTopic = async(topic) => {
             title: 'Error',
             message:'Somthing went wrong'
         })
+        console.log(e?.message)
+        return false;
+    }
+
+}
+
+export const solveDoubt = async(doubt = "") => {
+    try{
+        const response = await getRequest({
+            url: solveDoubtEndpoint,
+            params:{
+                doubt: doubt,
+            }
+        })
+        if(response?.status != 200){
+            errorNotification({message:response?.message})
+        }
+        return response;
+    }catch(e){
         console.log(e?.message)
         return false;
     }
