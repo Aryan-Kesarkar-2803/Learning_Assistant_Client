@@ -72,110 +72,197 @@ const RegisterPage = () => {
     //   <Loader texts={["...processing","...this may take some time"]}/>:
     <div></div>
     :
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 to-yellow-100 px-4">
-      <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
+    // <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 to-yellow-100 px-4">
+    //   <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
 
-        {/* Heading */}
-        <h2 className="text-2xl font-bold text-indigo-900 text-center mb-6">
-          Create User Account
-        </h2>
+    //     {/* Heading */}
+    //     <h2 className="text-2xl font-bold text-indigo-900 text-center mb-6">
+    //       Create User Account
+    //     </h2>
 
-        {/* Form */}
+    //     {/* Form */}
       
         
-        {/* User Register */}
-        <form className="space-y-5" 
-        onSubmit={handleRegisterUser}
-        >
-          {/* Email with OTP */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-1">Email</label>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                value={emailForUser}
-                className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none"
-                onChange={handleChangeEmailForUser}
-                required
-              />
-            </div>
-          </div>
+    //     {/* User Register */}
+    //     <form className="space-y-5" 
+    //     onSubmit={handleRegisterUser}
+    //     >
+    //       {/* Email with OTP */}
+    //       <div>
+    //         <label className="block text-gray-700 font-medium mb-1">Email</label>
+    //         <div className="flex gap-2">
+    //           <input
+    //             type="email"
+    //             name="email"
+    //             placeholder="Enter your email"
+    //             value={emailForUser}
+    //             className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none"
+    //             onChange={handleChangeEmailForUser}
+    //             required
+    //           />
+    //         </div>
+    //       </div>
 
-          {/* OTP Field */}
-          {/* {otpSent && (
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">
-                Enter OTP
-              </label>
-              <input
-                type="text"
-                placeholder="Enter the OTP"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none"
-                required
-              />
-            </div>
-          )} */}
+    //       {/* OTP Field */}
+    //       {/* {otpSent && (
+    //         <div>
+    //           <label className="block text-gray-700 font-medium mb-1">
+    //             Enter OTP
+    //           </label>
+    //           <input
+    //             type="text"
+    //             placeholder="Enter the OTP"
+    //             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none"
+    //             required
+    //           />
+    //         </div>
+    //       )} */}
 
-          {/* Password */}
-          <div className="relative">
-            <label className="block text-gray-700 font-medium mb-1">Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={passwordForUser}
-              onChange={handlePasswordChangeForUser}
-              placeholder="Create a password"
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none"
-              required
-            />
-            <button
-              type="button"
-              className="absolute right-3 top-10 text-gray-500"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
-            <p
-              className={`mt-2 text-sm ${
-                isStrongPassword(passwordForUser) ? "text-green-600" : "text-red-600"
-              }`}
-            >
-              {passwordForUser.length > 0 ? (
-                isStrongPassword(passwordForUser) ? (
-                    "Strong password ✅"
-                ) : (
-                    "Weak password ❌ Must contain 8+ chars, uppercase, lowercase, number & special char"
-                )
-                ) : null}
-            </p>
-          </div>
+    //       {/* Password */}
+    //       <div className="relative">
+    //         <label className="block text-gray-700 font-medium mb-1">Password</label>
+    //         <input
+    //           type={showPassword ? "text" : "password"}
+    //           name="password"
+    //           value={passwordForUser}
+    //           onChange={handlePasswordChangeForUser}
+    //           placeholder="Create a password"
+    //           className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none"
+    //           required
+    //         />
+    //         <button
+    //           type="button"
+    //           className="absolute right-3 top-10 text-gray-500"
+    //           onClick={() => setShowPassword(!showPassword)}
+    //         >
+    //           {showPassword ? <FaEyeSlash /> : <FaEye />}
+    //         </button>
+    //         <p
+    //           className={`mt-2 text-sm ${
+    //             isStrongPassword(passwordForUser) ? "text-green-600" : "text-red-600"
+    //           }`}
+    //         >
+    //           {passwordForUser.length > 0 ? (
+    //             isStrongPassword(passwordForUser) ? (
+    //                 "Strong password ✅"
+    //             ) : (
+    //                 "Weak password ❌ Must contain 8+ chars, uppercase, lowercase, number & special char"
+    //             )
+    //             ) : null}
+    //         </p>
+    //       </div>
 
-          {/* Submit */}
-          <button
-            type="submit"
-            className="w-full bg-yellow-400 text-indigo-900 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition"
-          >
-            Register
-          </button>
-        </form>
+    //       {/* Submit */}
+    //       <button
+    //         type="submit"
+    //         className="w-full bg-yellow-400 text-indigo-900 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition"
+    //       >
+    //         Register
+    //       </button>
+    //     </form>
 
         
        
 
-        {/* Footer */}
-        <p className="text-sm text-gray-600 mt-6 text-center">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-yellow-500 font-semibold hover:underline"
-          >
-            Login here
-          </Link>
+    //     {/* Footer */}
+    //     <p className="text-sm text-gray-600 mt-6 text-center">
+    //       Already have an account?{" "}
+    //       <Link
+    //         to="/login"
+    //         className="text-yellow-500 font-semibold hover:underline"
+    //       >
+    //         Login here
+    //       </Link>
+    //     </p>
+    //   </div>
+    // </div>
+
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-gray-900 dark:to-gray-950 px-4 transition-colors duration-300">
+  <div className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900 rounded-2xl w-full max-w-md p-8 border border-transparent dark:border-gray-700 transition-colors duration-300">
+
+    {/* Heading */}
+    <h2 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300 text-center mb-6">
+      Create User Account
+    </h2>
+
+    {/* Form */}
+    <form className="space-y-5" onSubmit={handleRegisterUser}>
+
+      {/* Email */}
+      <div>
+        <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">
+          Email
+        </label>
+        <div className="flex gap-2">
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={emailForUser}
+            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-yellow-400 dark:focus:ring-yellow-500 outline-none bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200"
+            onChange={handleChangeEmailForUser}
+            required
+          />
+        </div>
+      </div>
+
+      {/* Password */}
+      <div className="relative">
+        <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">
+          Password
+        </label>
+        <input
+          type={showPassword ? "text" : "password"}
+          name="password"
+          value={passwordForUser}
+          onChange={handlePasswordChangeForUser}
+          placeholder="Create a password"
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-yellow-400 dark:focus:ring-yellow-500 outline-none bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200"
+          required
+        />
+        <button
+          type="button"
+          className="absolute right-3 top-10 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-150"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+        <p
+          className={`mt-2 text-sm ${
+            isStrongPassword(passwordForUser) ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
+          }`}
+        >
+          {passwordForUser.length > 0 ? (
+            isStrongPassword(passwordForUser) ? (
+              "Strong password ✅"
+            ) : (
+              "Weak password ❌ Must contain 8+ chars, uppercase, lowercase, number & special char"
+            )
+          ) : null}
         </p>
       </div>
-    </div>
+
+      {/* Submit */}
+      <button
+        type="submit"
+        className="w-full bg-yellow-400 dark:bg-yellow-500 text-indigo-900 dark:text-indigo-950 py-2 rounded-lg font-semibold hover:bg-yellow-300 dark:hover:bg-yellow-400 transition-colors duration-200"
+      >
+        Register
+      </button>
+    </form>
+
+    {/* Footer */}
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-6 text-center">
+      Already have an account?{" "}
+      <Link
+        to="/login"
+        className="text-yellow-500 dark:text-yellow-400 font-semibold hover:underline"
+      >
+        Login here
+      </Link>
+    </p>
+  </div>
+</div>
     }
     </>
   );

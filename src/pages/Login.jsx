@@ -82,104 +82,198 @@ const LoginPage = () => {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100  px-4">
-      <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
-        {/* Toggle Buttons */}
-        <div className="flex mb-6 bg-gray-100 rounded-lg overflow-hidden">
-          <button
-            className={`flex-1 py-2 font-semibold transition ${
-              loginType === "user"
-                ? "bg-teal-500 text-white"
-                : "text-gray-600 hover:bg-gray-200"
-            }`}
-            onClick={() => setLoginType("user")}
-          >
-            User Login
-          </button>
-          <button
-            className={`flex-1 py-2 font-semibold transition ${
-              loginType === "admin"
-                ? "bg-teal-500 text-white"
-                : "text-gray-600 hover:bg-gray-200"
-            }`}
-            onClick={() => setLoginType("admin")}
-          >
-            Admin Login
-          </button>
-        </div>
+    // <div className="min-h-screen flex items-center justify-center bg-gray-100  px-4">
+    //   <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
+    //     {/* Toggle Buttons */}
+    //     <div className="flex mb-6 bg-gray-100 rounded-lg overflow-hidden">
+    //       <button
+    //         className={`flex-1 py-2 font-semibold transition ${
+    //           loginType === "user"
+    //             ? "bg-teal-500 text-white"
+    //             : "text-gray-600 hover:bg-gray-200"
+    //         }`}
+    //         onClick={() => setLoginType("user")}
+    //       >
+    //         User Login
+    //       </button>
+    //       <button
+    //         className={`flex-1 py-2 font-semibold transition ${
+    //           loginType === "admin"
+    //             ? "bg-teal-500 text-white"
+    //             : "text-gray-600 hover:bg-gray-200"
+    //         }`}
+    //         onClick={() => setLoginType("admin")}
+    //       >
+    //         Admin Login
+    //       </button>
+    //     </div>
 
-        {/* Heading */}
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          {loginType === "user"
-            ? "Welcome Back, User!"
-            : "Welcome Back, Admin!"}
-        </h2>
+    //     {/* Heading */}
+    //     <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+    //       {loginType === "user"
+    //         ? "Welcome Back, User!"
+    //         : "Welcome Back, Admin!"}
+    //     </h2>
 
-        {/* Form */}
-          <form
-            className="space-y-5"
-               onSubmit={handleLoginUser}
-          >
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                value={emailForUser}
-                onChange={(e) => {
-                  setEmailForUser(e.target.value);
-                }}
-                placeholder="Enter your email"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
-              />
-            </div>
+    //     {/* Form */}
+    //       <form
+    //         className="space-y-5"
+    //            onSubmit={handleLoginUser}
+    //       >
+    //         <div>
+    //           <label className="block text-gray-700 font-medium mb-1">
+    //             Email
+    //           </label>
+    //           <input
+    //             type="email"
+    //             value={emailForUser}
+    //             onChange={(e) => {
+    //               setEmailForUser(e.target.value);
+    //             }}
+    //             placeholder="Enter your email"
+    //             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
+    //           />
+    //         </div>
 
-            <div className="relative">
-              <label className="block text-gray-700 font-medium mb-1">
-                Password
-              </label>
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                value={passwordForUser}
-                onChange={(e) => {
-                  setPasswordForUser(e.target.value);
-                }}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
-              />
-              <button
-                type="button"
-                className="absolute right-3 top-10 text-gray-500"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
-            </div>
+    //         <div className="relative">
+    //           <label className="block text-gray-700 font-medium mb-1">
+    //             Password
+    //           </label>
+    //           <input
+    //             type={showPassword ? "text" : "password"}
+    //             placeholder="Enter your password"
+    //             value={passwordForUser}
+    //             onChange={(e) => {
+    //               setPasswordForUser(e.target.value);
+    //             }}
+    //             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-400 outline-none"
+    //           />
+    //           <button
+    //             type="button"
+    //             className="absolute right-3 top-10 text-gray-500"
+    //             onClick={() => setShowPassword(!showPassword)}
+    //           >
+    //             {showPassword ? <FaEyeSlash /> : <FaEye />}
+    //           </button>
+    //         </div>
 
-            <button
-              type="submit"
-              className={`w-full bg-teal-500 text-white py-2 rounded-lg font-semibold hover:bg-teal-600 transition ${loadingForButton ? "pointer-events-none" : "pointer-events-auto"}`}
-            >
-              {loadingForButton ? (
-                <CircularProgress size={22} color="white" />
-              ) : (
-                "Login"
-              )}
-            </button>
-          </form>
-        {/* Footer */}
-        <p className="text-sm text-gray-600 mt-6 text-center">
-          Don’t have an account?{" "}
-          <Link
-            to="/register"
-            className="text-teal-600 font-semibold hover:underline"
-          >
-            Register here
-          </Link>
-        </p>
-      </div>
+    //         <button
+    //           type="submit"
+    //           className={`w-full bg-teal-500 text-white py-2 rounded-lg font-semibold hover:bg-teal-600 transition ${loadingForButton ? "pointer-events-none" : "pointer-events-auto"}`}
+    //         >
+    //           {loadingForButton ? (
+    //             <CircularProgress size={22} color="white" />
+    //           ) : (
+    //             "Login"
+    //           )}
+    //         </button>
+    //       </form>
+    //     {/* Footer */}
+    //     <p className="text-sm text-gray-600 mt-6 text-center">
+    //       Don’t have an account?{" "}
+    //       <Link
+    //         to="/register"
+    //         className="text-teal-600 font-semibold hover:underline"
+    //       >
+    //         Register here
+    //       </Link>
+    //     </p>
+    //   </div>
+    // </div>
+
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-950 px-4 transition-colors duration-300">
+  <div className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900 rounded-2xl w-full max-w-md p-8 border border-transparent dark:border-gray-700 transition-colors duration-300">
+    
+    {/* Toggle Buttons */}
+    <div className="flex mb-6 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden transition-colors duration-200">
+      <button
+        className={`flex-1 py-2 font-semibold transition ${
+          loginType === "user"
+            ? "bg-teal-500 dark:bg-teal-600 text-white"
+            : "text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+        }`}
+        onClick={() => setLoginType("user")}
+      >
+        User Login
+      </button>
+      <button
+        className={`flex-1 py-2 font-semibold transition ${
+          loginType === "admin"
+            ? "bg-teal-500 dark:bg-teal-600 text-white"
+            : "text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+        }`}
+        onClick={() => setLoginType("admin")}
+      >
+        Admin Login
+      </button>
     </div>
+
+    {/* Heading */}
+    <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 text-center mb-6">
+      {loginType === "user" ? "Welcome Back, User!" : "Welcome Back, Admin!"}
+    </h2>
+
+    {/* Form */}
+    <form className="space-y-5" onSubmit={handleLoginUser}>
+      <div>
+        <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">
+          Email
+        </label>
+        <input
+          type="email"
+          value={emailForUser}
+          onChange={(e) => setEmailForUser(e.target.value)}
+          placeholder="Enter your email"
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal-400 dark:focus:ring-teal-500 outline-none bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200"
+        />
+      </div>
+
+      <div className="relative">
+        <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">
+          Password
+        </label>
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Enter your password"
+          value={passwordForUser}
+          onChange={(e) => setPasswordForUser(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal-400 dark:focus:ring-teal-500 outline-none bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200"
+        />
+        <button
+          type="button"
+          className="absolute right-3 top-10 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-150"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
+
+      <button
+        type="submit"
+        className={`w-full bg-teal-500 dark:bg-teal-600 text-white py-2 rounded-lg font-semibold hover:bg-teal-600 dark:hover:bg-teal-700 transition ${
+          loadingForButton ? "pointer-events-none" : "pointer-events-auto"
+        }`}
+      >
+        {loadingForButton ? (
+          <CircularProgress size={22} color="white" />
+        ) : (
+          "Login"
+        )}
+      </button>
+    </form>
+
+    {/* Footer */}
+    <p className="text-sm text-gray-600 dark:text-gray-400 mt-6 text-center">
+      Don't have an account?{" "}
+      <Link
+        to="/register"
+        className="text-teal-600 dark:text-teal-400 font-semibold hover:underline"
+      >
+        Register here
+      </Link>
+    </p>
+  </div>
+</div>
   );
 };
 

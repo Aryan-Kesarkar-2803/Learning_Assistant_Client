@@ -49,108 +49,207 @@ const MyLearnings = () => {
   }, [authUser]);
 
   return (
+    // <>
+    //   {loading ? (
+    //     <Loader />
+    //   ) : (
+    //     <div className="min-h-screen bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 px-6 py-10">
+    //       {/* Heading */}
+    //       <h1 className="text-3xl font-bold text-gray-800 mb-6">
+    //         My Learnings 📚
+    //       </h1>
+
+    //       {/* Tabs */}
+    //       <div className="flex gap-4 mb-8">
+    //         <button
+    //           onClick={() => setTab("active")}
+    //           className={`px-5 py-2 rounded-xl ${
+    //             tab === "active"
+    //               ? "bg-blue-600 text-white"
+    //               : "bg-white text-gray-700 border"
+    //           }`}
+    //         >
+    //           Active
+    //         </button>
+    //         <button
+    //           onClick={() => setTab("completed")}
+    //           className={`px-5 py-2 rounded-xl ${
+    //             tab === "completed"
+    //               ? "bg-green-600 text-white"
+    //               : "bg-white text-gray-700 border"
+    //           }`}
+    //         >
+    //           Completed
+    //         </button>
+    //       </div>
+
+    //       {/* Cards */}
+
+    //       {tab == "active" ? (
+    //         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    //           {(activeLearnings ?? []).map((item, index) => (
+    //             <div key={index} className="bg-white rounded-2xl shadow-md p-5">
+    //               <h2 className="text-xl font-semibold">{item?.topic || ""}</h2>
+    //               {/* <p className="text-sm text-gray-500">
+    //                 {(item?.roadmap ?? [])?.length} Steps
+    //               </p> */}
+
+    //               {/* Progress */}
+    //               <div className="mt-4">
+    //                 <div className="w-full h-2 bg-gray-200 rounded-full">
+    //                   <div
+    //                     className={`h-2 rounded-full bg-blue-600`}
+    //                     style={{ width: `${item?.progress || 0}%` }}
+    //                   />
+    //                 </div>
+    //                 <p className="text-xs mt-1 text-gray-500">
+    //                   {item?.progress || 0}% completed
+    //                 </p>
+    //               </div>
+
+    //               <button 
+    //               className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+    //               onClick={()=>{handleSelectLearning(item?.id)}}
+    //               >
+    //                 {item.isStarted ? "Continue":"Start Learning"}
+    //               </button>
+    //             </div>
+    //           ))}
+    //         </div>
+    //       ) : (
+    //         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    //           {(completedLearnings ?? []).map((item, index) => (
+    //             <div key={index} className="bg-white rounded-2xl shadow-md p-5">
+    //               <h2 className="text-xl font-semibold">{item?.topic || ""}</h2>
+    //               {/* <p className="text-sm text-gray-500">
+    //                 {(item?.roadmap ?? [])?.length} Steps
+    //               </p> */}
+
+    //               {/* Progress */}
+    //               <div className="mt-4">
+    //                 <div className="w-full h-2 bg-gray-200 rounded-full">
+    //                   <div
+    //                     className={`h-2 rounded-full bg-blue-600`}
+    //                     style={{ width: `${item?.progress || 10}%` }}
+    //                   />
+    //                 </div>
+    //                 <p className="text-xs mt-1 text-gray-500">
+    //                   {item?.progress || 0}% completed
+    //                 </p>
+    //               </div>
+
+    //               <button 
+    //               className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+    //               onClick={()=>{handleSelectLearning(item?.id)}}
+    //               >
+    //                 View
+    //               </button>
+    //             </div>
+    //           ))}
+    //         </div>
+    //       )}
+    //     </div>
+    //   )}
+    // </>
+
+
     <>
-      {loading ? (
-        <Loader />
+  {loading ? (
+    <Loader />
+  ) : (
+    <div className="min-h-screen bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 dark:from-gray-900 dark:via-gray-950 dark:to-blue-950 px-6 py-10 transition-colors duration-300">
+      {/* Heading */}
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">
+        My Learnings 📚
+      </h1>
+
+      {/* Tabs */}
+      <div className="flex gap-4 mb-8">
+        <button
+          onClick={() => setTab("active")}
+          className={`px-5 py-2 rounded-xl transition-colors duration-200 ${
+            tab === "active"
+              ? "bg-blue-600 dark:bg-blue-500 text-white"
+              : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
+          }`}
+        >
+          Active
+        </button>
+        <button
+          onClick={() => setTab("completed")}
+          className={`px-5 py-2 rounded-xl transition-colors duration-200 ${
+            tab === "completed"
+              ? "bg-green-600 dark:bg-green-500 text-white"
+              : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
+          }`}
+        >
+          Completed
+        </button>
+      </div>
+
+      {/* Cards */}
+      {tab == "active" ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {(activeLearnings ?? []).map((item, index) => (
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md dark:shadow-gray-900 border border-transparent dark:border-gray-700 p-5 transition-colors duration-300">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{item?.topic || ""}</h2>
+
+              {/* Progress */}
+              <div className="mt-4">
+                <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                  <div
+                    className="h-2 rounded-full bg-blue-600 dark:bg-blue-500"
+                    style={{ width: `${item?.progress || 0}%` }}
+                  />
+                </div>
+                <p className="text-xs mt-1 text-gray-500 dark:text-gray-400">
+                  {item?.progress || 0}% completed
+                </p>
+              </div>
+
+              <button
+                className="mt-5 w-full py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-600 transition"
+                onClick={() => handleSelectLearning(item?.id)}
+              >
+                {item.isStarted ? "Continue" : "Start Learning"}
+              </button>
+            </div>
+          ))}
+        </div>
       ) : (
-        <div className="min-h-screen bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 px-6 py-10">
-          {/* Heading */}
-          <h1 className="text-3xl font-bold text-gray-800 mb-6">
-            My Learnings 📚
-          </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {(completedLearnings ?? []).map((item, index) => (
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md dark:shadow-gray-900 border border-transparent dark:border-gray-700 p-5 transition-colors duration-300">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{item?.topic || ""}</h2>
 
-          {/* Tabs */}
-          <div className="flex gap-4 mb-8">
-            <button
-              onClick={() => setTab("active")}
-              className={`px-5 py-2 rounded-xl ${
-                tab === "active"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-700 border"
-              }`}
-            >
-              Active
-            </button>
-            <button
-              onClick={() => setTab("completed")}
-              className={`px-5 py-2 rounded-xl ${
-                tab === "completed"
-                  ? "bg-green-600 text-white"
-                  : "bg-white text-gray-700 border"
-              }`}
-            >
-              Completed
-            </button>
-          </div>
-
-          {/* Cards */}
-
-          {tab == "active" ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(activeLearnings ?? []).map((item, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-md p-5">
-                  <h2 className="text-xl font-semibold">{item?.topic || ""}</h2>
-                  {/* <p className="text-sm text-gray-500">
-                    {(item?.roadmap ?? [])?.length} Steps
-                  </p> */}
-
-                  {/* Progress */}
-                  <div className="mt-4">
-                    <div className="w-full h-2 bg-gray-200 rounded-full">
-                      <div
-                        className={`h-2 rounded-full bg-blue-600`}
-                        style={{ width: `${item?.progress || 0}%` }}
-                      />
-                    </div>
-                    <p className="text-xs mt-1 text-gray-500">
-                      {item?.progress || 0}% completed
-                    </p>
-                  </div>
-
-                  <button 
-                  className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
-                  onClick={()=>{handleSelectLearning(item?.id)}}
-                  >
-                    {item.isStarted ? "Continue":"Start Learning"}
-                  </button>
+              {/* Progress */}
+              <div className="mt-4">
+                <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                  <div
+                    className="h-2 rounded-full bg-blue-600 dark:bg-blue-500"
+                    style={{ width: `${item?.progress || 10}%` }}
+                  />
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(completedLearnings ?? []).map((item, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-md p-5">
-                  <h2 className="text-xl font-semibold">{item?.topic || ""}</h2>
-                  {/* <p className="text-sm text-gray-500">
-                    {(item?.roadmap ?? [])?.length} Steps
-                  </p> */}
+                <p className="text-xs mt-1 text-gray-500 dark:text-gray-400">
+                  {item?.progress || 0}% completed
+                </p>
+              </div>
 
-                  {/* Progress */}
-                  <div className="mt-4">
-                    <div className="w-full h-2 bg-gray-200 rounded-full">
-                      <div
-                        className={`h-2 rounded-full bg-blue-600`}
-                        style={{ width: `${item?.progress || 10}%` }}
-                      />
-                    </div>
-                    <p className="text-xs mt-1 text-gray-500">
-                      {item?.progress || 0}% completed
-                    </p>
-                  </div>
-
-                  <button 
-                  className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
-                  onClick={()=>{handleSelectLearning(item?.id)}}
-                  >
-                    View
-                  </button>
-                </div>
-              ))}
+              <button
+                className="mt-5 w-full py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-600 transition"
+                onClick={() => handleSelectLearning(item?.id)}
+              >
+                View
+              </button>
             </div>
-          )}
+          ))}
         </div>
       )}
-    </>
+    </div>
+  )}
+</>
+
+
   );
 };
 
