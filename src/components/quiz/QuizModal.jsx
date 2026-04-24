@@ -26,41 +26,20 @@ const QuizModal = ({ questions = [], onComplete }) => {
   return (
     <>
 
-      {/* <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
-        fullWidth
-        maxWidth="md"
-      >
-        <DialogTitle
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          Quiz
-          <IconButton onClick={() => setOpen(false)}>
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-
-        <DialogContent>
-          <QuizComponent questions={questions} onComplete={onComplete} />
-        </DialogContent>
-      </Dialog> */}
-
       <Dialog
   open={open}
   onClose={() => setOpen(false)}
   fullWidth
   maxWidth="md"
+  fullScreen={typeof window !== "undefined" && window.innerWidth < 600}
   PaperProps={{
     sx: {
-      borderRadius: "20px",
+      borderRadius: { xs: 0, sm: "20px" },
       overflow: "hidden",
       border: "1px solid",
-      borderColor: isDark ? "rgba(55,65,81,0.9)" : "rgba(229,231,235,1)",
+      borderColor: isDark
+        ? "rgba(55,65,81,0.9)"
+        : "rgba(229,231,235,1)",
       background: isDark
         ? "linear-gradient(180deg, #111827 0%, #0f172a 100%)"
         : "linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)",
@@ -68,19 +47,22 @@ const QuizModal = ({ questions = [], onComplete }) => {
         ? "0 20px 50px rgba(0,0,0,0.5)"
         : "0 20px 50px rgba(15,23,42,0.12)",
       backdropFilter: "blur(12px)",
+      m: { xs: 0, sm: 2 },
     },
   }}
 >
-  {/* HEADER */}
+
   <DialogTitle
     sx={{
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      px: 3,
-      py: 2,
+      px: { xs: 2, sm: 3 },
+      py: { xs: 1.5, sm: 2 },
       borderBottom: "1px solid",
-      borderColor: isDark ? "rgba(55,65,81,0.8)" : "rgba(229,231,235,1)",
+      borderColor: isDark
+        ? "rgba(55,65,81,0.8)"
+        : "rgba(229,231,235,1)",
       background: isDark
         ? "linear-gradient(135deg, #1e293b, #111827)"
         : "linear-gradient(135deg, #eef2ff, #f1f5f9)",
@@ -88,19 +70,21 @@ const QuizModal = ({ questions = [], onComplete }) => {
   >
     <div className="flex items-center gap-3">
       <div
-        className="w-10 h-10 rounded-xl flex items-center justify-center"
+        className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center"
         style={{
           background: "linear-gradient(135deg, #6366f1, #3b82f6)",
         }}
       >
-        <span className="text-white font-bold text-lg">Q</span>
+        <span className="text-white font-bold text-base sm:text-lg">
+          Q
+        </span>
       </div>
 
       <div>
-        <p className="text-lg font-bold text-gray-900 dark:text-gray-100">
+        <p className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
           Quiz
         </p>
-        <p className="text-xs text-gray-500 dark:text-gray-400">
+        <p className="text-[11px] sm:text-xs text-gray-500 dark:text-gray-400">
           Test your understanding
         </p>
       </div>
@@ -121,19 +105,20 @@ const QuizModal = ({ questions = [], onComplete }) => {
     </IconButton>
   </DialogTitle>
 
-  {/* CONTENT */}
+ 
   <DialogContent
     sx={{
-      px: 3,
-      py: 3,
+      px: { xs: 2, sm: 3 },
+      py: { xs: 2, sm: 3 },
       backgroundColor: "transparent",
     }}
   >
-    <div className="rounded-2xl bg-white/70 dark:bg-gray-900/60 backdrop-blur border border-gray-200 dark:border-gray-800 p-4">
+    <div className="rounded-2xl bg-white/70 dark:bg-gray-900/60 backdrop-blur border border-gray-200 dark:border-gray-800 p-3 sm:p-4">
       <QuizComponent questions={questions} onComplete={onComplete} />
     </div>
   </DialogContent>
 </Dialog>
+
     </>
   );
 };
