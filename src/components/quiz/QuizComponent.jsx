@@ -14,6 +14,10 @@ import {
 const QuizComponent = ({ questions = [], onComplete }) => {
   const [answers, setAnswers] = useState({});
   const [showResult, setShowResult] = useState(false);
+   const [isDark, setIsDark] = useState(
+      document.documentElement.classList.contains("dark")
+    );
+  
 
   const handleChange = (qIndex, value) => {
     setAnswers({ ...answers, [qIndex]: value });
@@ -41,103 +45,283 @@ const QuizComponent = ({ questions = [], onComplete }) => {
 
   const progress = (Object.keys(answers).length / questions.length) * 100;
 
-  useEffect(() => {
-    
-  }, [showResult]);
+  
+    useEffect(() => {
+      const observer = new MutationObserver(() => {
+        setIsDark(document.documentElement.classList.contains("dark"));
+      });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
+      return () => observer.disconnect();
+    }, []);
 
   return (
-    <Box sx={{ p: 3, maxWidth: 800, mx: "auto" }}>
-      {/* Header */}
-      <Typography variant="h4" sx={{ mb: 2, fontWeight: "bold" }}>
-        Quiz
-      </Typography>
+    // <Box sx={{ p: 3, maxWidth: 800, mx: "auto" }}>
+    //   {/* Header */}
+    //   <Typography variant="h4" sx={{ mb: 2, fontWeight: "bold" }}>
+    //     Quiz
+    //   </Typography>
 
-      {/* Progress */}
-      <Box sx={{ mb: 3 }}>
-        <LinearProgress variant="determinate" value={progress} />
-        <Typography variant="body2" sx={{ mt: 1 }}>
-          {Object.keys(answers).length} / {questions.length} answered
-        </Typography>
-      </Box>
+    //   {/* Progress */}
+    //   <Box sx={{ mb: 3 }}>
+    //     <LinearProgress variant="determinate" value={progress} />
+    //     <Typography variant="body2" sx={{ mt: 1 }}>
+    //       {Object.keys(answers).length} / {questions.length} answered
+    //     </Typography>
+    //   </Box>
 
-      {/* Questions */}
-      {questions.map((q, index) => {
-        const isCorrect = answers[index] === q.answer;
+    //   {/* Questions */}
+    //   {questions.map((q, index) => {
+    //     const isCorrect = answers[index] === q.answer;
 
-        return (
-          <Card
-            key={index}
-            sx={{
-              mb: 3,
-              borderRadius: 3,
-              boxShadow: 2,
-              border: showResult
-                ? isCorrect
-                  ? "2px solid green"
-                  : "2px solid red"
-                : "1px solid #eee",
-            }}
-          >
-            <CardContent>
-              <Typography sx={{ mb: 2, fontWeight: 500 }}>
-                {index + 1}. {q.question}
-              </Typography>
+    //     return (
+    //       <Card
+    //         key={index}
+    //         sx={{
+    //           mb: 3,
+    //           borderRadius: 3,
+    //           boxShadow: 2,
+    //           border: showResult
+    //             ? isCorrect
+    //               ? "2px solid green"
+    //               : "2px solid red"
+    //             : "1px solid #eee",
+    //         }}
+    //       >
+    //         <CardContent>
+    //           <Typography sx={{ mb: 2, fontWeight: 500 }}>
+    //             {index + 1}. {q.question}
+    //           </Typography>
 
-              <RadioGroup
-                value={answers[index] ?? ""}
-                onChange={(e) => handleChange(index, e.target.value)}
-              >
-                {q.options.map((opt, i) => (
-                  <FormControlLabel
-                    key={i}
-                    value={opt}
-                    control={<Radio />}
-                    label={opt}
-                  />
-                ))}
-              </RadioGroup>
+    //           <RadioGroup
+    //             value={answers[index] ?? ""}
+    //             onChange={(e) => handleChange(index, e.target.value)}
+    //           >
+    //             {q.options.map((opt, i) => (
+    //               <FormControlLabel
+    //                 key={i}
+    //                 value={opt}
+    //                 control={<Radio />}
+    //                 label={opt}
+    //               />
+    //             ))}
+    //           </RadioGroup>
 
-              {showResult && (
-                <Typography
-                  sx={{
-                    mt: 2,
-                    fontWeight: 500,
-                    color: isCorrect ? "green" : "red",
-                  }}
-                >
-                  {isCorrect ? "Correct ✅" : `Wrong ❌ | Correct: ${q.answer}`}
-                </Typography>
-              )}
-            </CardContent>
-          </Card>
-        );
-      })}
+    //           {showResult && (
+    //             <Typography
+    //               sx={{
+    //                 mt: 2,
+    //                 fontWeight: 500,
+    //                 color: isCorrect ? "green" : "red",
+    //               }}
+    //             >
+    //               {isCorrect ? "Correct ✅" : `Wrong ❌ | Correct: ${q.answer}`}
+    //             </Typography>
+    //           )}
+    //         </CardContent>
+    //       </Card>
+    //     );
+    //   })}
 
-      {/* Submit */}
-      <Button
-        variant="contained"
-        fullWidth
-        sx={{ py: 1.5, borderRadius: 2 }}
-        disabled={Object.keys(answers).length !== questions.length}
-        // onClick={onComplete}
-        onClick={() => {
-          setShowResult(true);
-          submitQuiz();
+    //   {/* Submit */}
+    //   <Button
+    //     variant="contained"
+    //     fullWidth
+    //     sx={{ py: 1.5, borderRadius: 2 }}
+    //     disabled={Object.keys(answers).length !== questions.length}
+    //     // onClick={onComplete}
+    //     onClick={() => {
+    //       setShowResult(true);
+    //       submitQuiz();
+    //     }}
+    //   >
+    //     Submit
+    //   </Button>
+
+    //   {/* Score */}
+    //   {showResult && (
+    //     <Typography
+    //       variant="h6"
+    //       sx={{ mt: 3, textAlign: "center", fontWeight: "bold" }}
+    //     >
+    //       Score: {getScore()} / {questions.length}
+    //     </Typography>
+    //   )}
+    // </Box>
+
+   <Box
+  sx={{
+    p: 3,
+    maxWidth: 800,
+    mx: "auto",
+    color: isDark ? "#f3f4f6" : "#111827",
+  }}
+>
+  {/* Header */}
+  <Typography
+    variant="h4"
+    sx={{
+      mb: 3,
+      fontWeight: "bold",
+      color: isDark ? "#f9fafb" : "#111827",
+    }}
+  >
+    Quiz
+  </Typography>
+
+  {/* Progress */}
+  <Box sx={{ mb: 4 }}>
+    <LinearProgress
+      variant="determinate"
+      value={progress}
+      sx={{
+        height: 8,
+        borderRadius: 10,
+        backgroundColor: isDark ? "#374151" : "#e5e7eb",
+        "& .MuiLinearProgress-bar": {
+          background: "linear-gradient(90deg, #6366f1, #3b82f6)",
+        },
+      }}
+    />
+    <Typography
+      variant="body2"
+      sx={{ mt: 1, color: isDark ? "#9ca3af" : "#4b5563" }}
+    >
+      {Object.keys(answers).length} / {questions.length} answered
+    </Typography>
+  </Box>
+
+  {/* Questions */}
+  {questions.map((q, index) => {
+    const isCorrect = answers[index] === q.answer;
+
+    return (
+      <Card
+        key={index}
+        sx={{
+          mb: 3,
+          borderRadius: 4,
+          backdropFilter: "blur(12px)",
+          background: isDark
+            ? "rgba(31, 41, 55, 0.8)"
+            : "rgba(255,255,255,0.9)",
+          border: showResult
+            ? isCorrect
+              ? "2px solid #22c55e"
+              : "2px solid #ef4444"
+            : isDark
+            ? "1px solid #374151"
+            : "1px solid #e5e7eb",
+          boxShadow: isDark
+            ? "0 10px 30px rgba(0,0,0,0.4)"
+            : "0 10px 25px rgba(0,0,0,0.08)",
         }}
       >
-        Submit
-      </Button>
+        <CardContent>
+          <Typography
+            sx={{
+              mb: 2,
+              fontWeight: 600,
+              color: isDark ? "#f3f4f6" : "#111827",
+            }}
+          >
+            {index + 1}. {q.question}
+          </Typography>
 
-      {/* Score */}
-      {showResult && (
-        <Typography
-          variant="h6"
-          sx={{ mt: 3, textAlign: "center", fontWeight: "bold" }}
-        >
-          Score: {getScore()} / {questions.length}
-        </Typography>
-      )}
-    </Box>
+          <RadioGroup
+            value={answers[index] ?? ""}
+            onChange={(e) => handleChange(index, e.target.value)}
+          >
+            {q.options.map((opt, i) => (
+              <FormControlLabel
+                key={i}
+                value={opt}
+                control={
+                  <Radio
+                    sx={{
+                      color: isDark ? "#9ca3af" : "#6b7280",
+                      "&.Mui-checked": {
+                        color: "#6366f1",
+                      },
+                    }}
+                  />
+                }
+                label={
+                  <Typography
+                    sx={{
+                      color: isDark ? "#e5e7eb" : "#374151",
+                    }}
+                  >
+                    {opt}
+                  </Typography>
+                }
+              />
+            ))}
+          </RadioGroup>
+
+          {showResult && (
+            <Typography
+              sx={{
+                mt: 2,
+                fontWeight: 600,
+                color: isCorrect ? "#22c55e" : "#ef4444",
+              }}
+            >
+              {isCorrect
+                ? "Correct ✅"
+                : `Wrong ❌ | Correct: ${q.answer}`}
+            </Typography>
+          )}
+        </CardContent>
+      </Card>
+    );
+  })}
+
+  {/* Submit */}
+  <Button
+    variant="contained"
+    fullWidth
+    sx={{
+      py: 1.5,
+      borderRadius: 3,
+      fontWeight: "bold",
+      background: "linear-gradient(135deg, #6366f1, #3b82f6)",
+      boxShadow: "0 10px 20px rgba(99,102,241,0.3)",
+      "&:hover": {
+        background: "linear-gradient(135deg, #4f46e5, #2563eb)",
+      },
+      "&.Mui-disabled": {
+        background: isDark ? "#374151" : "#d1d5db",
+        color: isDark ? "#6b7280" : "#9ca3af",
+      },
+    }}
+    disabled={Object.keys(answers).length !== questions.length}
+    onClick={() => {
+      setShowResult(true);
+      submitQuiz();
+    }}
+  >
+    Submit
+  </Button>
+
+  {/* Score */}
+  {showResult && (
+    <Typography
+      variant="h6"
+      sx={{
+        mt: 4,
+        textAlign: "center",
+        fontWeight: "bold",
+        color: isDark ? "#f9fafb" : "#111827",
+      }}
+    >
+      Score: {getScore()} / {questions.length}
+    </Typography>
+  )}
+</Box>
+
   );
 };
 

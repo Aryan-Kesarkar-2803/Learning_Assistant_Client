@@ -220,257 +220,159 @@ const handleChangeGender = (e) =>{
 
   return (
 
-    <div className="flex justify-center items-start min-h-screen bg-gray-100 dark:bg-gray-950 p-6">
+<div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 via-white to-gray-200 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 p-6 transition-colors duration-300">
+
+  {/* Loader */}
   {(loading || loadingForSave) ? (
-    <Loader texts={ loadingForSave ? ['saving profile...', 'please wait...'] :['Fetching User Profile...', "Loading..."]} />
+    <Loader
+      texts={
+        loadingForSave
+          ? ["Saving profile...", "Please wait..."]
+          : ["Fetching User Profile...", "Loading..."]
+      }
+    />
   ) : (
-    // <form
-    //   onSubmit={handleSubmit}
-    //   className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-5xl"
-    // >
-    //   <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-    //     User Profile
-    //   </h2>
-
-    //   {/* Profile Image Upload */}
-    //   <div className="flex flex-col items-center mb-8">
-    //     {(userProfile?.profileImageData?.url?.length > 0 || userProfile?.file !== null) ? (
-    //       <div className="flex flex-col items-center">
-    //         <img
-    //         onClick={()=>{
-    //           setActiveImageSrc(
-    //              userProfile?.file !== null
-    //               ? URL.createObjectURL(userProfile?.file)
-    //               : userProfile?.profileImageData?.url
-    //           )
-    //           setOpenImagePopup(true)
-    //         }}
-    //           src={
-    //             userProfile?.file !== null
-    //               ? URL.createObjectURL(userProfile?.file)
-    //               : userProfile?.profileImageData?.url
-    //           }
-    //           alt="preview"
-    //           className="w-28 h-28 rounded-full border-4 border-indigo-500 object-cover cursor-pointer"
-    //         />
-    //         <button
-    //           type="button"
-    //           onClick={clearImage}
-    //           className="mt-2 px-3 py-1 bg-red-500 text-white text-sm rounded-lg hover:bg-red-600"
-    //         >
-    //           Remove
-    //         </button>
-    //       </div>
-    //     ) : (
-    //       <div className="w-28 h-28 flex items-center justify-center bg-gray-200 rounded-full text-gray-500">
-    //         No Image
-    //       </div>
-    //     )}
-    //     <input
-    //       type="file"
-    //       accept="image/*"
-    //       onChange={handleChangeImageData}
-    //       className="mt-3"
-    //     />
-    //   </div>
-
-    //   {/* Profile Info */}
-    //   <div className="mb-8">
-    //     <h3 className="text-xl font-semibold text-gray-700 mb-4">Profile Info</h3>
-    //     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    //       <div className="flex flex-col">
-    //         <label className="text-gray-600 font-medium mb-1">Full Name</label>
-    //         <input
-    //           type="text"
-    //           name="fullName"
-    //           value={userProfile.fullName}
-    //           onChange={handleChangeProfileName}
-    //           placeholder="Full Name"
-    //           className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-    //         />
-    //       </div>
-
-    //       <div className="flex flex-col">
-    //         <label className="text-gray-600 font-medium mb-1">Phone Number</label>
-    //         <input
-    //           type="text"
-    //           name="phoneNo"
-    //           value={userProfile.phoneNo}
-    //           onChange={handleChangePhoneNo}
-    //           placeholder="Phone Number"
-    //           className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-    //         />
-    //       </div>
-
-    //       <div className="flex flex-col">
-    //         <label className="text-gray-600 font-medium mb-1">Gender</label>
-
-    //         <SelectBox
-    //         value={userProfile.gender}
-    //         onChange={handleChangeGender}
-    //         options={['Male', 'Female']}
-    //         />
-    //       </div>
-    //        <div className="flex flex-col">
-    //         <label className="text-gray-600 font-medium mb-1">Email</label>
-    //         <input
-    //           type="text"
-    //           name="fullName"
-    //           value={authUser?.userDetails?.email || ''}
-    //           disabled
-    //           placeholder="Email"
-    //           className="w-full p-3 border rounded-lg text-stone-500 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-    //         />
-    //       </div>
-    //     </div>
-    //   </div>
-
-
-    //   {/* Buttons */}
-    //   <div className="flex justify-center gap-6">
-    //     <button
-    //       type="submit"
-    //       className={`px-8 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 flex items-center justify-center ${
-    //         loadingForSave ? "pointer-events-none" : "pointer-events-auto"
-    //       }`}
-    //     >
-    //       {loadingForSave ? <CircularProgress size={20} color="white" /> : "Save"}
-    //     </button>
-
-    //   </div>
-    // </form>
-
 
     <form
-  onSubmit={handleSubmit}
-  className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900 rounded-2xl p-8 w-full max-w-5xl border border-transparent dark:border-gray-700 transition-colors duration-300"
->
-  <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-8 text-center">
-    User Profile
-  </h2>
+      onSubmit={handleSubmit}
+      className="w-full max-w-5xl rounded-3xl bg-white/80 dark:bg-gray-900/70 backdrop-blur-xl border border-gray-200 dark:border-gray-800 shadow-2xl p-8 md:p-10 transition-all duration-300"
+    >
 
-  {/* Profile Image Upload */}
-  <div className="flex flex-col items-center mb-8">
-    {(userProfile?.profileImageData?.url?.length > 0 || userProfile?.file !== null) ? (
-      <div className="flex flex-col items-center">
-        <img
-          onClick={() => {
-            setActiveImageSrc(
-              userProfile?.file !== null
-                ? URL.createObjectURL(userProfile?.file)
-                : userProfile?.profileImageData?.url
-            );
-            setOpenImagePopup(true);
-          }}
-          src={
-            userProfile?.file !== null
-              ? URL.createObjectURL(userProfile?.file)
-              : userProfile?.profileImageData?.url
-          }
-          alt="preview"
-          className="w-28 h-28 rounded-full border-4 border-indigo-500 dark:border-indigo-400 object-cover cursor-pointer"
+      {/* Header */}
+      <div className="text-center mb-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white">
+          User Profile
+        </h2>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">
+          Manage your personal details
+        </p>
+      </div>
+
+      {/* Profile Image */}
+      <div className="flex flex-col items-center mb-10">
+
+        {(userProfile?.profileImageData?.url?.length > 0 || userProfile?.file !== null) ? (
+          <div className="relative group">
+
+            <img
+              onClick={() => {
+                setActiveImageSrc(
+                  userProfile?.file !== null
+                    ? URL.createObjectURL(userProfile?.file)
+                    : userProfile?.profileImageData?.url
+                );
+                setOpenImagePopup(true);
+              }}
+              src={
+                userProfile?.file !== null
+                  ? URL.createObjectURL(userProfile?.file)
+                  : userProfile?.profileImageData?.url
+              }
+              alt="profile"
+              className="w-32 h-32 rounded-full object-cover border-4 border-indigo-500 dark:border-indigo-400 shadow-lg cursor-pointer group-hover:scale-105 transition-transform duration-300"
+            />
+
+            <button
+              type="button"
+              onClick={clearImage}
+              className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 text-xs rounded-full bg-red-500 text-white hover:bg-red-600 transition"
+            >
+              Remove
+            </button>
+
+          </div>
+        ) : (
+          <div className="w-32 h-32 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-300 dark:border-gray-700">
+            No Image
+          </div>
+        )}
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleChangeImageData}
+          className="mt-4 text-sm text-gray-600 dark:text-gray-300 file:mr-3 file:px-4 file:py-1.5 file:rounded-lg file:border-0 file:bg-indigo-100 file:text-indigo-700 dark:file:bg-indigo-900/40 dark:file:text-indigo-300 hover:file:opacity-90 transition"
         />
+      </div>
+
+      {/* Form Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+
+        <div>
+          <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
+            Full Name
+          </label>
+          <input
+            type="text"
+            name="fullName"
+            value={userProfile.fullName}
+            onChange={handleChangeProfileName}
+            className="mt-2 w-full p-3 rounded-xl bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
+            Phone Number
+          </label>
+          <input
+            type="text"
+            name="phoneNo"
+            value={userProfile.phoneNo}
+            onChange={handleChangePhoneNo}
+            className="mt-2 w-full p-3 rounded-xl bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
+            Gender
+          </label>
+          <div className="mt-2">
+            <SelectBox
+              value={userProfile.gender}
+              onChange={handleChangeGender}
+              options={['Male', 'Female']}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
+            Email
+          </label>
+          <input
+            disabled
+            value={authUser?.userDetails?.email || ''}
+            className="mt-2 w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-700 cursor-not-allowed"
+          />
+        </div>
+
+      </div>
+
+      {/* Save Button */}
+      <div className="flex justify-center">
         <button
-          type="button"
-          onClick={clearImage}
-          className="mt-2 px-3 py-1 bg-red-500 dark:bg-red-600 text-white text-sm rounded-lg hover:bg-red-600 dark:hover:bg-red-700 transition-colors duration-150"
+          type="submit"
+          className="px-10 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
         >
-          Remove
+          {loadingForSave ? (
+            <CircularProgress size={20} color="inherit" />
+          ) : (
+            "Save"
+          )}
         </button>
       </div>
-    ) : (
-      <div className="w-28 h-28 flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded-full text-gray-500 dark:text-gray-400">
-        No Image
-      </div>
-    )}
-    <input
-      type="file"
-      accept="image/*"
-      onChange={handleChangeImageData}
-      className="mt-3 text-gray-600 dark:text-gray-400 file:mr-3 file:px-3 file:py-1 file:rounded-lg file:border-0 file:bg-indigo-50 file:text-indigo-700 dark:file:bg-indigo-900/40 dark:file:text-indigo-300 file:text-sm"
-    />
-  </div>
 
-  {/* Profile Info */}
-  <div className="mb-8">
-    <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-4">
-      Profile Info
-    </h3>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div className="flex flex-col">
-        <label className="text-gray-600 dark:text-gray-300 font-medium mb-1">
-          Full Name
-        </label>
-        <input
-          type="text"
-          name="fullName"
-          value={userProfile.fullName}
-          onChange={handleChangeProfileName}
-          placeholder="Full Name"
-          className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200"
-        />
-      </div>
-
-      <div className="flex flex-col">
-        <label className="text-gray-600 dark:text-gray-300 font-medium mb-1">
-          Phone Number
-        </label>
-        <input
-          type="text"
-          name="phoneNo"
-          value={userProfile.phoneNo}
-          onChange={handleChangePhoneNo}
-          placeholder="Phone Number"
-          className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:focus:ring-indigo-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200"
-        />
-      </div>
-
-      <div className="flex flex-col">
-        <label className="text-gray-600 dark:text-gray-300 font-medium mb-1">
-          Gender
-        </label>
-        <SelectBox
-          value={userProfile.gender}
-          onChange={handleChangeGender}
-          options={['Male', 'Female']}
-        />
-      </div>
-
-      <div className="flex flex-col">
-        <label className="text-gray-600 dark:text-gray-300 font-medium mb-1">
-          Email
-        </label>
-        <input
-          type="text"
-          name="fullName"
-          value={authUser?.userDetails?.email || ''}
-          disabled
-          placeholder="Email"
-          className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-stone-500 dark:text-gray-500 bg-gray-50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-indigo-400 cursor-not-allowed transition-colors duration-200"
-        />
-      </div>
-    </div>
-  </div>
-
-  {/* Buttons */}
-  <div className="flex justify-center gap-6">
-    <button
-      type="submit"
-      className={`px-8 py-3 bg-indigo-500 dark:bg-indigo-600 text-white rounded-lg hover:bg-indigo-600 dark:hover:bg-indigo-700 flex items-center justify-center transition-colors duration-200 ${
-        loadingForSave ? "pointer-events-none" : "pointer-events-auto"
-      }`}
-    >
-      {loadingForSave ? <CircularProgress size={20} color="white" /> : "Save"}
-    </button>
-  </div>
-</form>
+    </form>
   )}
 
   <ImagePopup
-  open={openImagePopup}
-  onClose={()=>{setOpenImagePopup(false)}}
-  src={activeImageSrc}
+    open={openImagePopup}
+    onClose={() => setOpenImagePopup(false)}
+    src={activeImageSrc}
   />
+
 </div>
 
   );

@@ -49,203 +49,135 @@ const MyLearnings = () => {
   }, [authUser]);
 
   return (
-    // <>
-    //   {loading ? (
-    //     <Loader />
-    //   ) : (
-    //     <div className="min-h-screen bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 px-6 py-10">
-    //       {/* Heading */}
-    //       <h1 className="text-3xl font-bold text-gray-800 mb-6">
-    //         My Learnings 📚
-    //       </h1>
-
-    //       {/* Tabs */}
-    //       <div className="flex gap-4 mb-8">
-    //         <button
-    //           onClick={() => setTab("active")}
-    //           className={`px-5 py-2 rounded-xl ${
-    //             tab === "active"
-    //               ? "bg-blue-600 text-white"
-    //               : "bg-white text-gray-700 border"
-    //           }`}
-    //         >
-    //           Active
-    //         </button>
-    //         <button
-    //           onClick={() => setTab("completed")}
-    //           className={`px-5 py-2 rounded-xl ${
-    //             tab === "completed"
-    //               ? "bg-green-600 text-white"
-    //               : "bg-white text-gray-700 border"
-    //           }`}
-    //         >
-    //           Completed
-    //         </button>
-    //       </div>
-
-    //       {/* Cards */}
-
-    //       {tab == "active" ? (
-    //         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    //           {(activeLearnings ?? []).map((item, index) => (
-    //             <div key={index} className="bg-white rounded-2xl shadow-md p-5">
-    //               <h2 className="text-xl font-semibold">{item?.topic || ""}</h2>
-    //               {/* <p className="text-sm text-gray-500">
-    //                 {(item?.roadmap ?? [])?.length} Steps
-    //               </p> */}
-
-    //               {/* Progress */}
-    //               <div className="mt-4">
-    //                 <div className="w-full h-2 bg-gray-200 rounded-full">
-    //                   <div
-    //                     className={`h-2 rounded-full bg-blue-600`}
-    //                     style={{ width: `${item?.progress || 0}%` }}
-    //                   />
-    //                 </div>
-    //                 <p className="text-xs mt-1 text-gray-500">
-    //                   {item?.progress || 0}% completed
-    //                 </p>
-    //               </div>
-
-    //               <button 
-    //               className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
-    //               onClick={()=>{handleSelectLearning(item?.id)}}
-    //               >
-    //                 {item.isStarted ? "Continue":"Start Learning"}
-    //               </button>
-    //             </div>
-    //           ))}
-    //         </div>
-    //       ) : (
-    //         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    //           {(completedLearnings ?? []).map((item, index) => (
-    //             <div key={index} className="bg-white rounded-2xl shadow-md p-5">
-    //               <h2 className="text-xl font-semibold">{item?.topic || ""}</h2>
-    //               {/* <p className="text-sm text-gray-500">
-    //                 {(item?.roadmap ?? [])?.length} Steps
-    //               </p> */}
-
-    //               {/* Progress */}
-    //               <div className="mt-4">
-    //                 <div className="w-full h-2 bg-gray-200 rounded-full">
-    //                   <div
-    //                     className={`h-2 rounded-full bg-blue-600`}
-    //                     style={{ width: `${item?.progress || 10}%` }}
-    //                   />
-    //                 </div>
-    //                 <p className="text-xs mt-1 text-gray-500">
-    //                   {item?.progress || 0}% completed
-    //                 </p>
-    //               </div>
-
-    //               <button 
-    //               className="mt-5 w-full py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
-    //               onClick={()=>{handleSelectLearning(item?.id)}}
-    //               >
-    //                 View
-    //               </button>
-    //             </div>
-    //           ))}
-    //         </div>
-    //       )}
-    //     </div>
-    //   )}
-    // </>
-
 
     <>
   {loading ? (
     <Loader />
   ) : (
-    <div className="min-h-screen bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 dark:from-gray-900 dark:via-gray-950 dark:to-blue-950 px-6 py-10 transition-colors duration-300">
-      {/* Heading */}
-      <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">
-        My Learnings 📚
+
+    <div className="relative min-h-screen overflow-hidden bg-white dark:bg-gray-950 px-6 md:px-0 py-16">
+
+  {/* Background (same system) */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div
+      className="absolute w-[500px] h-[500px] rounded-full opacity-20 dark:opacity-10 blur-3xl"
+      style={{
+        background: "radial-gradient(circle, #6366f1, #3b82f6)",
+        top: "-10%",
+        left: "-10%",
+      }}
+    />
+    <div
+      className="absolute w-[400px] h-[400px] rounded-full opacity-15 dark:opacity-10 blur-3xl"
+      style={{
+        background: "radial-gradient(circle, #8b5cf6, #06b6d4)",
+        bottom: "-10%",
+        right: "-5%",
+      }}
+    />
+  </div>
+
+  <div className="relative z-10 max-w-7xl mx-auto">
+
+    {/* Header */}
+    <div className="mb-10">
+      <h1 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white">
+        My{" "}
+        <span className="bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
+          Learnings
+        </span>{" "}
+        📚
       </h1>
-
-      {/* Tabs */}
-      <div className="flex gap-4 mb-8">
-        <button
-          onClick={() => setTab("active")}
-          className={`px-5 py-2 rounded-xl transition-colors duration-200 ${
-            tab === "active"
-              ? "bg-blue-600 dark:bg-blue-500 text-white"
-              : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
-          }`}
-        >
-          Active
-        </button>
-        <button
-          onClick={() => setTab("completed")}
-          className={`px-5 py-2 rounded-xl transition-colors duration-200 ${
-            tab === "completed"
-              ? "bg-green-600 dark:bg-green-500 text-white"
-              : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
-          }`}
-        >
-          Completed
-        </button>
-      </div>
-
-      {/* Cards */}
-      {tab == "active" ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {(activeLearnings ?? []).map((item, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md dark:shadow-gray-900 border border-transparent dark:border-gray-700 p-5 transition-colors duration-300">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{item?.topic || ""}</h2>
-
-              {/* Progress */}
-              <div className="mt-4">
-                <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                  <div
-                    className="h-2 rounded-full bg-blue-600 dark:bg-blue-500"
-                    style={{ width: `${item?.progress || 0}%` }}
-                  />
-                </div>
-                <p className="text-xs mt-1 text-gray-500 dark:text-gray-400">
-                  {item?.progress || 0}% completed
-                </p>
-              </div>
-
-              <button
-                className="mt-5 w-full py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-600 transition"
-                onClick={() => handleSelectLearning(item?.id)}
-              >
-                {item.isStarted ? "Continue" : "Start Learning"}
-              </button>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {(completedLearnings ?? []).map((item, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 rounded-2xl shadow-md dark:shadow-gray-900 border border-transparent dark:border-gray-700 p-5 transition-colors duration-300">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{item?.topic || ""}</h2>
-
-              {/* Progress */}
-              <div className="mt-4">
-                <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-                  <div
-                    className="h-2 rounded-full bg-blue-600 dark:bg-blue-500"
-                    style={{ width: `${item?.progress || 10}%` }}
-                  />
-                </div>
-                <p className="text-xs mt-1 text-gray-500 dark:text-gray-400">
-                  {item?.progress || 0}% completed
-                </p>
-              </div>
-
-              <button
-                className="mt-5 w-full py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-600 transition"
-                onClick={() => handleSelectLearning(item?.id)}
-              >
-                View
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
+      <p className="text-gray-600 dark:text-gray-400 mt-2">
+        Track your progress and continue your learning journey.
+      </p>
     </div>
+
+    {/* Tabs */}
+    <div className="flex gap-4 mb-10">
+      <button
+        onClick={() => setTab("active")}
+        className={`px-6 py-2.5 rounded-2xl font-semibold transition-all duration-300 ${
+          tab === "active"
+            ? "bg-gradient-to-r from-indigo-500 to-blue-500 text-white shadow-lg shadow-indigo-500/25"
+            : "bg-white/70 dark:bg-gray-900/70 backdrop-blur border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-indigo-300"
+        }`}
+      >
+        Active
+      </button>
+
+      <button
+        onClick={() => setTab("completed")}
+        className={`px-6 py-2.5 rounded-2xl font-semibold transition-all duration-300 ${
+          tab === "completed"
+            ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/25"
+            : "bg-white/70 dark:bg-gray-900/70 backdrop-blur border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-green-300"
+        }`}
+      >
+        Completed
+      </button>
+    </div>
+
+    {/* Cards */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      {(tab === "active" ? activeLearnings : completedLearnings)?.map((item, index) => (
+        <div
+          key={index}
+          className="group relative p-6 rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-gray-200 dark:border-gray-800 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/10"
+        >
+
+          {/* Glow */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition bg-gradient-to-br from-indigo-500 to-cyan-500 rounded-3xl" />
+
+          {/* Title */}
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+            {item?.topic || ""}
+          </h2>
+
+          {/* Progress */}
+          <div>
+            <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div
+                className="h-2 rounded-full bg-gradient-to-r from-indigo-500 to-blue-500 transition-all duration-500"
+                style={{ width: `${item?.progress || 0}%` }}
+              />
+            </div>
+            <p className="text-xs mt-2 text-gray-500 dark:text-gray-400">
+              {item?.progress || 0}% completed
+            </p>
+          </div>
+
+          {/* CTA */}
+          <button
+            onClick={() => handleSelectLearning(item?.id)}
+            className="mt-6 w-full group relative px-4 py-3 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 hover:scale-[1.02]"
+            style={{ background: "linear-gradient(135deg, #6366f1, #3b82f6)" }}
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              {tab === "active"
+                ? item.isStarted
+                  ? "Continue"
+                  : "Start Learning"
+                : "View"}
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </span>
+
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition"
+              style={{ background: "linear-gradient(135deg, #4f46e5, #2563eb)" }}
+            />
+          </button>
+
+        </div>
+      ))}
+
+    </div>
+  </div>
+</div>
+
+
+
   )}
 </>
 

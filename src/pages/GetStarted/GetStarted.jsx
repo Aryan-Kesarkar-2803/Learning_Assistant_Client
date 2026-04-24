@@ -43,110 +43,169 @@ const GetStarted = () => {
   };
 
   return (
-    // <div className="min-h-screen bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 px-4">
-    //   {/* Content Wrapper */}
-    //   <div className="max-w-3xl mx-auto pt-24 text-center">
-    //     {/* Heading */}
-    //     <h1 className="text-4xl font-bold text-gray-800">
-    //       What do you want to learn? 🚀
-    //     </h1>
+//     <div className="min-h-screen bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 dark:from-gray-900 dark:via-gray-950 dark:to-blue-950 px-4 transition-colors duration-300">
+//   {/* Content Wrapper */}
+//   <div className="max-w-3xl mx-auto pt-24 text-center">
+//     {/* Heading */}
+//     <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">
+//       What do you want to learn? 🚀
+//     </h1>
 
-    //     {/* Subtext */}
-    //     <p className="mt-2 text-gray-600">
-    //       Enter a topic and get a personalized roadmap instantly.
-    //     </p>
+//     {/* Subtext */}
+//     <p className="mt-2 text-gray-600 dark:text-gray-400">
+//       Enter a topic and get a personalized roadmap instantly.
+//     </p>
 
-    //     {/* Input */}
-    //     <div className="mt-8 flex gap-2 bg-white p-2 rounded-2xl shadow-md max-w-2xl mx-auto">
-    //       <input
-    //         type="text"
-    //         placeholder="e.g. React, Machine Learning..."
-    //         value={roadmap?.topic}
-    //         onChange={(e) => {
-    //           setRoadmap((prev) => ({
-    //             ...prev,
-    //             topic: e?.target?.value,
-    //           }));
-    //         }}
-    //         onKeyDown={(e) => e.key === "Enter" && handleProceed()}
-    //         className="flex-1 px-4 py-3 rounded-xl focus:outline-none"
-    //       />
-    //       {/* 
-    //   <button
-    //     disabled={loading}
-    //     onClick={handleProceed}
-    //     className={`px-6 py-3 ${loading ? "bg-gray-400" :"bg-blue-600"} text-white rounded-xl ${!loading && "hover:bg-blue-700"} transition`}
-    //   >
-    //     Proceed
-    //   </button> */}
+//     {/* Input */}
+//     <div className="mt-8 flex gap-2 bg-white dark:bg-gray-800 p-2 rounded-2xl shadow-md dark:shadow-gray-900 max-w-2xl mx-auto border border-transparent dark:border-gray-700 transition-colors duration-300">
+//       <input
+//         type="text"
+//         placeholder="e.g. React, Machine Learning..."
+//         value={roadmap?.topic}
+//         onChange={(e) => {
+//           setRoadmap((prev) => ({
+//             ...prev,
+//             topic: e?.target?.value,
+//           }));
+//         }}
+//         onKeyDown={(e) => e.key === "Enter" && handleProceed()}
+//         className="flex-1 px-4 py-3 rounded-xl focus:outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200"
+//       />
 
-    //       <button
-    //         disabled={loading}
-    //         onClick={handleProceed}
-    //         className={`px-6 py-3 flex items-center justify-center ${
-    //           loading
-    //             ? "bg-gray-400 cursor-not-allowed"
-    //             : "bg-blue-600 hover:bg-blue-700"
-    //         } text-white rounded-xl transition min-w-[120px]`}
-    //       >
-    //         {loading ? (
-    //           <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-    //         ) : (
-    //           "Proceed"
-    //         )}
-    //       </button>
-    //     </div>
-    //   </div>
-    // </div>
+//       <button
+//         disabled={loading}
+//         onClick={handleProceed}
+//         className={`px-6 py-3 flex items-center justify-center ${
+//           loading
+//             ? "bg-gray-400 dark:bg-gray-600 cursor-not-allowed"
+//             : "bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600"
+//         } text-white rounded-xl transition min-w-[120px]`}
+//       >
+//         {loading ? (
+//           <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+//         ) : (
+//           "Proceed"
+//         )}
+//       </button>
+//     </div>
+//   </div>
+// </div>
 
 
-    <div className="min-h-screen bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 dark:from-gray-900 dark:via-gray-950 dark:to-blue-950 px-4 transition-colors duration-300">
-  {/* Content Wrapper */}
-  <div className="max-w-3xl mx-auto pt-24 text-center">
-    {/* Heading */}
-    <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">
-      What do you want to learn? 🚀
-    </h1>
+<div className="relative min-h-screen overflow-hidden bg-white dark:bg-gray-950 px-4  transition-colors duration-300">
+  {/* Background */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div
+      className="absolute w-[600px] h-[600px] rounded-full opacity-20 dark:opacity-10 blur-3xl"
+      style={{
+        background: "radial-gradient(circle, #6366f1, #3b82f6)",
+        top: "-12%",
+        left: "-10%",
+      }}
+    />
+    <div
+      className="absolute w-[450px] h-[450px] rounded-full opacity-15 dark:opacity-10 blur-3xl"
+      style={{
+        background: "radial-gradient(circle, #8b5cf6, #06b6d4)",
+        bottom: "-10%",
+        right: "-6%",
+      }}
+    />
+    <div
+      className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+      style={{
+        backgroundImage:
+          "linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px)",
+        backgroundSize: "60px 60px",
+      }}
+    />
+  </div>
 
-    {/* Subtext */}
-    <p className="mt-2 text-gray-600 dark:text-gray-400">
-      Enter a topic and get a personalized roadmap instantly.
-    </p>
+  <div className="relative z-10 min-h-screen flex justify-center pt-16 ">
+    <div className="w-full max-w-4xl text-center">
+      {/* Badge */}
+      <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 mb-6">
+        <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+        AI-Powered Learning Platform
+      </span>
 
-    {/* Input */}
-    <div className="mt-8 flex gap-2 bg-white dark:bg-gray-800 p-2 rounded-2xl shadow-md dark:shadow-gray-900 max-w-2xl mx-auto border border-transparent dark:border-gray-700 transition-colors duration-300">
-      <input
-        type="text"
-        placeholder="e.g. React, Machine Learning..."
-        value={roadmap?.topic}
-        onChange={(e) => {
-          setRoadmap((prev) => ({
-            ...prev,
-            topic: e?.target?.value,
-          }));
-        }}
-        onKeyDown={(e) => e.key === "Enter" && handleProceed()}
-        className="flex-1 px-4 py-3 rounded-xl focus:outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200"
-      />
+      {/* Heading */}
+      <h1 className="text-4xl md:text-6xl font-black leading-tight text-gray-900 dark:text-white">
+        What do you want to{" "}
+        <span className="relative inline-block">
+          <span className="bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent">
+            learn
+          </span>
+          <span
+            className="absolute bottom-1 left-0 w-full h-3 opacity-20 rounded"
+            style={{ background: "linear-gradient(90deg, #6366f1, #06b6d4)" }}
+          />
+        </span>
+        {" "}today? 🚀
+      </h1>
 
-      <button
-        disabled={loading}
-        onClick={handleProceed}
-        className={`px-6 py-3 flex items-center justify-center ${
-          loading
-            ? "bg-gray-400 dark:bg-gray-600 cursor-not-allowed"
-            : "bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600"
-        } text-white rounded-xl transition min-w-[120px]`}
-      >
-        {loading ? (
-          <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-        ) : (
-          "Proceed"
-        )}
-      </button>
+      <p className="mt-5 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+        Enter any topic and get a personalized roadmap with smart guidance, progress tracking, and learning support.
+      </p>
+
+      {/* Input Card */}
+      <div className="mt-12 max-w-3xl mx-auto p-3 md:p-4 rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border border-gray-200 dark:border-gray-800 shadow-2xl shadow-indigo-500/10">
+        <div className="flex flex-col md:flex-row gap-3">
+          <div className="flex-1 relative">
+            <input
+              type="text"
+              placeholder="e.g. React, Machine Learning, System Design..."
+              value={roadmap?.topic}
+              onChange={(e) => {
+                setRoadmap((prev) => ({
+                  ...prev,
+                  topic: e.target.value,
+                }));
+              }}
+              onKeyDown={(e) => e.key === "Enter" && handleProceed()}
+              className="w-full px-5 py-4 rounded-2xl bg-transparent text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none"
+            />
+          </div>
+
+          <button
+            disabled={loading}
+            onClick={handleProceed}
+            className={`group relative px-7 py-4 rounded-2xl font-bold text-white overflow-hidden transition-all duration-300 ${
+              loading
+                ? "bg-gray-400 dark:bg-gray-600 cursor-not-allowed"
+                : "hover:scale-[1.02] shadow-lg shadow-indigo-500/25"
+            }`}
+            style={!loading ? { background: "linear-gradient(135deg, #6366f1, #3b82f6)" } : {}}
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2 min-w-[120px]">
+              {loading ? (
+                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <>
+                  Proceed
+                  <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                </>
+              )}
+            </span>
+
+            {!loading && (
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "linear-gradient(135deg, #4f46e5, #2563eb)" }}
+              />
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Small hint */}
+      <p className="mt-5 text-sm text-gray-400 dark:text-gray-500">
+        Try: DSA, Java, Spring Boot, Web Development, AI, Cloud Computing
+      </p>
     </div>
   </div>
 </div>
+
   );
 };
 

@@ -233,206 +233,115 @@ const LearningPage = () => {
   return loading ? (
     <Loader texts={[...textForLoading]} />
   ) : (
-    // <div className="min-h-screen flex flex-col bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200">
-    //   {/* MAIN CONTENT */}
-    //   <div className="flex flex-1">
-    //     {/* LEFT SIDEBAR */}
-    //     <div className="w-64 bg-white border-r p-4 space-y-3 h-[calc(100vh-0px)] sticky top-0">
-    //       <h2 className="text-lg font-bold mb-4">Steps</h2>
 
-    //       {(data?.roadmap ?? []).map((step, index) => (
-    //         <div
-    //           key={index}
-    //           onClick={() => {
-    //             if (!isEnabled(index)) return;
-    //             setActiveStep(index);
-    //             setActiveTopic(0);
-    //           }}
-    //           className={`p-3 rounded-xl transition ${
-    //             isEnabled(index)
-    //               ? activeStep === index
-    //                 ? "bg-blue-100 text-blue-700 cursor-pointer"
-    //                 : "hover:bg-gray-100 cursor-pointer"
-    //               : "bg-gray-100 text-gray-400 cursor-not-allowed"
-    //           }`}
-    //         >
-    //           {step?.stepName}
-    //         </div>
-    //       ))}
-    //     </div>
+<div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <div className="flex min-h-screen">
 
-    //     {/* RIGHT SIDE */}
-    //     <div className="flex-1 p-6 overflow-auto">
-    //       {/* HEADER */}
-    //       <h1 className="text-2xl font-bold mb-6">{data.topic}</h1>
-
-    //       <div className="grid grid-cols-3 gap-6 items-start">
-    //         {/* TOPICS LIST */}
-    //         <div className="col-span-1 bg-white rounded-xl p-4 shadow-sm space-y-3 h-fit">
-    //           <h3 className="font-semibold mb-2">Topics</h3>
-
-    //           {(currentStep?.topics ?? []).map((topic, index) => (
-    //             <div
-    //               key={index}
-    //               onClick={() => setActiveTopic(index)}
-    //               className={`flex items-center gap-2 p-2 rounded-lg ${
-    //                 activeTopic === index ? "bg-blue-50" : "hover:bg-gray-100"
-    //               }`}
-    //             >
-    //               <input
-    //                 type="checkbox"
-    //                 disabled={topic?.videoLink == '' || topic?.docId == ''}
-    //                 className="h-4 w-4 cursor-pointer"
-    //                 checked={topic.isCompleted}
-    //                 onChange={(e) => {
-    //                   e.stopPropagation();
-    //                   toggleTopic(activeStep, index);
-    //                 }}
-    //               />
-
-    //               <span
-    //                 className={`text-sm cursor-default ${
-    //                   topic.isCompleted ? " text-gray-400" : ""
-    //                 }`}
-    //               >
-    //                 {topic.topicName}
-    //               </span>
-    //             </div>
-    //           ))}
-    //         </div>
-
-    //         {/* VIDEO */}
-    //         <div className="col-span-2 bg-white rounded-xl p-4 shadow-sm h-fit">
-    //           <h3 className="font-semibold mb-3">{currentTopic.topicName}</h3>
-
-    //           <div className="rounded-lg overflow-hidden border">
-    //             {videoUrl ? (
-    //               // <iframe
-    //               //   className="w-full aspect-video"
-    //               //   src={videoUrl}
-    //               //   loading="lazy"
-    //               //   title="video"
-    //               //   allowFullScreen
-    //               // />
-    //               <MemoizedIframe src={videoUrl || ""} />
-    //             ) : (
-    //               <div className="h-64 flex items-center justify-center text-gray-700">
-    //                 ... Loading please wait 
-    //               </div>
-    //             )}
-    //           </div>
-    //         </div>
-    //       </div>
-    //       <div className="mt-8">
-    //         <LearningAccordion text={notes} />
-    //       </div>
-    //     </div>
-
-    //     <QuizModal
-    //       questions={questionsForQuiz || []}
-    //       onComplete={handleQuizComplete}
-    //     />
-    //   </div>
-    // </div>
-
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-rose-200 via-pink-100 to-purple-200 dark:from-gray-900 dark:via-gray-950 dark:to-blue-950 transition-colors duration-300">
-  {/* MAIN CONTENT */}
-  <div className="flex flex-1">
     {/* LEFT SIDEBAR */}
-    <div className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-4 space-y-3 h-[calc(100vh-0px)] sticky top-0 transition-colors duration-300">
-      <h2 className="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">Steps</h2>
+    <aside className="w-72 border-r border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl sticky top-0 h-screen overflow-y-auto">
+      <div className="p-5 border-b border-gray-200 dark:border-gray-800">
+        <h2 className="text-xl font-black">Steps</h2>
+      </div>
 
-      {(data?.roadmap ?? []).map((step, index) => (
-        <div
-          key={index}
-          onClick={() => {
-            if (!isEnabled(index)) return;
-            setActiveStep(index);
-            setActiveTopic(0);
-          }}
-          className={`p-3 rounded-xl transition ${
-            isEnabled(index)
-              ? activeStep === index
-                ? "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 cursor-pointer"
-                : "hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 cursor-pointer"
-              : "bg-gray-100 dark:bg-gray-700/50 text-gray-400 dark:text-gray-500 cursor-not-allowed"
-          }`}
-        >
-          {step?.stepName}
-        </div>
-      ))}
-    </div>
+      <div className="p-4 space-y-3">
+        {(data?.roadmap ?? []).map((step, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              if (!isEnabled(index)) return;
+              setActiveStep(index);
+              setActiveTopic(0);
+            }}
+            className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 ${
+              activeStep === index
+                ? "bg-gradient-to-r from-indigo-500 to-blue-500 text-white shadow-lg"
+                : isEnabled(index)
+                  ? "bg-white dark:bg-gray-950 border-gray-200 dark:border-gray-800 hover:border-indigo-300"
+                  : "bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed"
+            }`}
+          >
+            {step?.stepName}
+          </button>
+        ))}
+      </div>
+    </aside>
 
-    {/* RIGHT SIDE */}
-    <div className="flex-1 p-6 overflow-auto">
-      {/* HEADER */}
-      <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">{data.topic}</h1>
+    <main className="flex-1 p-6">
+ 
+      <h1 className="text-3xl font-black mb-6">{data?.topic}</h1>
 
-      <div className="grid grid-cols-3 gap-6 items-start">
-        {/* TOPICS LIST */}
-        <div className="col-span-1 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm dark:shadow-gray-900 border border-transparent dark:border-gray-700 space-y-3 h-fit transition-colors duration-300">
-          <h3 className="font-semibold mb-2 text-gray-900 dark:text-gray-100">Topics</h3>
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
 
-          {(currentStep?.topics ?? []).map((topic, index) => (
-            <div
-              key={index}
-              onClick={() => setActiveTopic(index)}
-              className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-colors duration-150 ${
-                activeTopic === index
-                  ? "bg-blue-50 dark:bg-blue-900/40"
-                  : "hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
-            >
-              <input
-                type="checkbox"
-                disabled={topic?.videoLink == "" || topic?.docId == ""}
-                className="h-4 w-4 cursor-pointer accent-blue-600 dark:accent-blue-400"
-                checked={topic.isCompleted}
-                onChange={(e) => {
-                  e.stopPropagation();
-                  toggleTopic(activeStep, index);
-                }}
-              />
-              <span
-                className={`text-sm cursor-default ${
-                  topic.isCompleted
-                    ? "text-gray-400 dark:text-gray-500"
-                    : "text-gray-800 dark:text-gray-200"
+        {/* TOPICS */}
+        <div className="xl:col-span-4">
+          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-4">
+            <h3 className="font-bold mb-3">Topics</h3>
+
+            {(currentStep?.topics ?? []).map((topic, index) => (
+              <div
+                key={index}
+                onClick={() => setActiveTopic(index)}
+                className={`p-3 rounded-xl cursor-pointer mb-2 transition ${
+                  activeTopic === index
+                    ? "bg-indigo-50 dark:bg-indigo-900/40"
+                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
                 }`}
               >
-                {topic.topicName}
-              </span>
-            </div>
-          ))}
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    disabled={topic?.videoLink == "" || topic?.docId == ""}
+                    checked={topic.isCompleted}
+                    onChange={(e) => {
+                      e.stopPropagation();
+                      toggleTopic(activeStep, index);
+                    }}
+                    className="accent-indigo-600"
+                  />
+                  <span
+                    className={`text-sm ${
+                      topic.isCompleted
+                        ? "text-gray-400"
+                        : "text-gray-800 dark:text-gray-200"
+                    }`}
+                  >
+                    {topic.topicName}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* VIDEO */}
-        <div className="col-span-2 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm dark:shadow-gray-900 border border-transparent dark:border-gray-700 h-fit transition-colors duration-300">
-          <h3 className="font-semibold mb-3 text-gray-900 dark:text-gray-100">{currentTopic.topicName}</h3>
+        <div className="xl:col-span-8">
+          <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-3xl p-4">
+            <h3 className="font-bold mb-3">{currentTopic?.topicName}</h3>
 
-          <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
-            {videoUrl ? (
-              <MemoizedIframe src={videoUrl || ""} />
-            ) : (
-              <div className="h-64 flex items-center justify-center text-gray-700 dark:text-gray-400">
-                ... Loading please wait
-              </div>
-            )}
+            <div className="rounded-xl overflow-hidden border dark:border-gray-700">
+              {videoUrl ? (
+                <MemoizedIframe src={videoUrl || ""} />
+              ) : (
+                <div className="h-64 flex items-center justify-center text-gray-500">
+                  Loading...
+                </div>
+              )}
+            </div>
           </div>
+
+         
         </div>
       </div>
-
-      <div className="mt-8">
-        <LearningAccordion text={notes} />
-      </div>
-    </div>
-
-    <QuizModal
-      questions={questionsForQuiz || []}
-      onComplete={handleQuizComplete}
-    />
+            <LearningAccordion text={notes} />
+       
+      <QuizModal
+        questions={questionsForQuiz || []}
+        onComplete={handleQuizComplete}
+      />
+    </main>
   </div>
 </div>
+
   );
 };
 
