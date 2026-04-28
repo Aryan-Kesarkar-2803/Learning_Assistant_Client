@@ -8,7 +8,7 @@ const Loader = ({
   interval = 2000,
 }) => {
   const [index, setIndex] = useState(0);
-  const textForLoader = [...texts, "...Please wait"];
+  const textForLoader = [...texts, "...please wait"];
 
   const [isDark, setIsDark] = useState(
     document.documentElement.classList.contains("dark"),
