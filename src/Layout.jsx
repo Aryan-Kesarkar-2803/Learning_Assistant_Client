@@ -18,6 +18,7 @@ const Layout = () => {
   const [authUser, setAuthUser] = useAtom(authUserAtom);
 
   const getAuthenticationStatus = async () => {
+    setLoading(true);
     const [res, res1] = await Promise.all([
       firstRequest(),
       homeRequestSentimentModel(),
@@ -25,8 +26,10 @@ const Layout = () => {
 
     if (res == false) {
       setAuthUser({});
+      setLoading(false);
       navigate("/");
     }
+    setLoading(false);
   };
 
   useEffect(() => {
