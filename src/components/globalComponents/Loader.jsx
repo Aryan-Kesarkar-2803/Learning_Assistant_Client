@@ -33,40 +33,6 @@ const Loader = ({
   }, [textForLoader, interval]);
 
   return (
-
-//     <Box
-//   sx={{
-//     position: "fixed",
-//     top: 0,
-//     left: 0,
-//     width: "100%",
-//     height: "100%",
-//     bgcolor: isDark ? "rgba(0,0,0,0.75)" : "rgba(0,0,0,0.55)",
-//     display: "flex",
-//     flexDirection: "column",
-//     alignItems: "center",
-//     justifyContent: "center",
-//     zIndex: 10,
-//     backdropFilter: "blur(5px)",
-//   }}
-// >
-//   <CircularProgress size={size} color={color} thickness={4} />
-
-
-//   <Typography
-//     variant="body2"
-//     sx={{
-//       mt: 2,
-//       color: isDark ? "#e5e7eb" : "#ffffff",
-//       fontWeight: 500,
-//       textAlign: "center",
-//     }}
-//   >
-//     {textForLoader[index]}
-//   </Typography>
-// </Box> 
-
-
  <Box
   sx={{
     position: "fixed",
