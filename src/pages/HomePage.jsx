@@ -65,6 +65,17 @@ const HomePage = () => {
   const [heroVisible, setHeroVisible] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
+  const navigateToGetStarted = () =>{
+    const token = JSON.parse(localStorage.getItem("user"))?.token || "";
+
+    if(!token || token?.length == 0){
+      navigate("/login");
+      return;
+    }
+
+    navigate('/get-started')
+  }
+
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 100)
     return () => clearTimeout(t)
@@ -178,7 +189,7 @@ const HomePage = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             >
               <button
-                onClick={() => navigate('/get-started')}
+                onClick={navigateToGetStarted}
                 className="group relative px-8 py-4 rounded-2xl font-bold text-white overflow-hidden shadow-lg shadow-indigo-500/25 dark:shadow-indigo-500/10 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/30"
                 style={{ background: 'linear-gradient(135deg, #6366f1, #3b82f6)' }}
               >
@@ -322,7 +333,7 @@ const HomePage = () => {
             Register today and unlock personalized learning experiences powered by AI. Join thousands of learners already achieving their goals.
           </p>
           <button
-            onClick={() => navigate('/get-started')}
+            onClick={navigateToGetStarted}
             className="group px-10 py-4 rounded-2xl font-black text-white text-lg relative overflow-hidden shadow-2xl shadow-indigo-500/30 hover:scale-105 transition-all duration-300"
             style={{ background: 'linear-gradient(135deg, #6366f1, #3b82f6)' }}
           >

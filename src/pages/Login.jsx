@@ -197,12 +197,12 @@ const LoginPage = () => {
         User Login
       </button>
       <button
-        className={`flex-1 py-2 font-semibold transition ${
+        className={`flex-1 py-2 font-semibold transition cursor-not-allowed ${
           loginType === "admin"
             ? "bg-teal-500 dark:bg-teal-600 text-white"
             : "text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
         }`}
-        onClick={() => setLoginType("admin")}
+        // onClick={() => setLoginType("admin")}
       >
         Admin Login
       </button>
