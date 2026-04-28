@@ -40,7 +40,7 @@ const Layout = () => {
     <>
     {
       loading ? 
-      <Loader texts={["...starting the Server","...this may take some time"]}/> :
+      <Loader texts={["...starting the server","...this may take some time"]}/> :
     
     <div>
       <Header />
