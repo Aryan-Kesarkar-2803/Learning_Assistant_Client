@@ -115,7 +115,7 @@ const ChatBot = () => {
               className={`px-3 py-2 rounded-2xl break-words
       ${
         m.role === "user"
-          ? "ml-auto bg-indigo-500 text-white rounded-br-none max-w-[70%]"
+          ? "ml-auto bg-indigo-500 text-white rounded-br-none w-fit max-w-[70%]"
           : "mr-auto bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-none shadow-sm max-w-[90%]"
       }
     `}
