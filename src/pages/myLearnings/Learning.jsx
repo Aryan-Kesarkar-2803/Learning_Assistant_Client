@@ -296,7 +296,7 @@ const LearningPage = () => {
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
-                      disabled={topic?.videoLink == "" || topic?.docId == ""}
+                      disabled={topic?.docId == ""}
                       checked={topic.isCompleted}
                       onChange={(e) => {
                         e.stopPropagation();

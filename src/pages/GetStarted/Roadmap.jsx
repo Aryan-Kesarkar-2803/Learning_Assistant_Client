@@ -168,12 +168,12 @@ const Roadmap = () => {
       </div>
 
       {/* Actions */}
-      <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+      <div className="flex flex-col sm:flex-row justify-center gap-4 sm:justify-between mt-10 mb-14">
 
         {/* Back */}
         <button
           onClick={() => navigate("/get-started")}
-          className="px-8 py-4 rounded-2xl font-bold border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-red-400 hover:text-red-600 transition-all duration-300 hover:scale-105"
+          className="px-8 py-4 rounded-2xl font-bold border-2 bg-red-600 border-gray-200 dark:border-gray-700 text-white dark:text-gray-300 hover:border-red-400 hover:bg-red-700  transition-all duration-300 hover:scale-105"
         >
           ← Back
         </button>
