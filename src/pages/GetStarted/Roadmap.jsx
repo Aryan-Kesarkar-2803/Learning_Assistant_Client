@@ -22,7 +22,6 @@ const Roadmap = () => {
       isCompleted: false,
       progress: 0,
     };
-    //  console.log(learning); return;
     const response = await saveRoadmap(learning);
     setLoading(false);
     if (!response) {
@@ -71,8 +70,6 @@ const Roadmap = () => {
       navigate("/get-started");
     }
   }, []);
-
-  console.log(roadmap)
 
   return (
 
