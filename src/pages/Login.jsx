@@ -185,7 +185,7 @@ const LoginPage = () => {
   <div className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-900 rounded-2xl w-full max-w-md p-8 border border-transparent dark:border-gray-700 transition-colors duration-300">
     
     {/* Toggle Buttons */}
-    <div className="flex mb-6 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden transition-colors duration-200">
+     {/* <div className="flex mb-6 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden transition-colors duration-200">
       <button
         className={`flex-1 py-2 font-semibold transition ${
           loginType === "user"
@@ -195,8 +195,8 @@ const LoginPage = () => {
         onClick={() => setLoginType("user")}
       >
         User Login
-      </button>
-      <button
+      </button> */}
+      {/* <button
         className={`flex-1 py-2 font-semibold transition cursor-not-allowed ${
           loginType === "admin"
             ? "bg-teal-500 dark:bg-teal-600 text-white"
@@ -205,8 +205,8 @@ const LoginPage = () => {
         // onClick={() => setLoginType("admin")}
       >
         Admin Login
-      </button>
-    </div>
+      </button> */}
+    {/* </div>  */}
 
     {/* Heading */}
     <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 text-center mb-6">
